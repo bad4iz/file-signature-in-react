@@ -1,0 +1,64 @@
+{
+  "name": "file-signature-in-react",
+  "version": "1.0.4",
+  "description": "Компонент на реакте для подписи файла ЭЦП",
+  "unpkg": "dist/index.js",
+  "jsdelivr": "dist/index.js",
+  "scripts": {
+    "build": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist --copy-files",
+    "lint": "eslint ./src",
+    "lintfix": "eslint ./src --fix",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook --output-dir ./docs",
+    "test": "echo \"Error: no test specified\" ",
+    "postversion": "git push && git push --tags"
+  },
+  "keywords": [
+    "react-component",
+    "cripto-pro",
+    "react",
+    "file-signature",
+    "signature",
+    "file"
+  ],
+  "author": "bad4iz",
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.3.8",
+    "@storybook/addon-centered": "^5.1.10",
+    "@storybook/addon-links": "^5.3.8",
+    "@storybook/addons": "^5.3.8",
+    "@storybook/preset-create-react-app": "^1.5.2",
+    "@storybook/react": "^5.3.8",
+    "babel-cli": "^6.6.4",
+    "babel-core": "^6.7.4",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-es2015-modules-umd": "^6.6.5",
+    "babel-polyfill": "^6.7.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "enzyme": "^3.3.0",
+    "eslint": "*",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-equimper": "*",
+    "eslint-config-prettier": "*",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "*",
+    "eslint-plugin-react": "^7.10.0",
+    "nodemon": "^1.17.2",
+    "prettier": "*",
+    "redux-logger": "*",
+    "sinon": "^7.3.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "lodash": "^4.17.15"
+  }
+}
