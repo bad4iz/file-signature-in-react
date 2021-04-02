@@ -16,7 +16,7 @@
 
 ## Как подключить
 ```bash
-yarn --registry [путь до локального npm репозитория] add file-signature-in-react 
+yarn add file-signature-in-react 
 ```
 
 
@@ -86,9 +86,4 @@ yarn storybook
 http://localhost:6006/   
 
 тут можно будет проверить свои кейсы
-
-## Для разработчика этого пакета
-
-1. В Local NPM registry будут лететь только тэгированные коммиты.
-2. Чтобы протолкнуть новую версию в Local NPM registry нужно написать: `npm version [patch|minor|major]`
 
