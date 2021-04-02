@@ -1,4 +1,14 @@
 # File signature 
+
+![](https://travis-ci.org/bad4iz/file-signature-in-react.svg?branch=main)
+![](https://img.shields.io/npm/v/file-signature-in-react.svg)
+![](https://img.shields.io/npm/dt/file-signature-in-react.svg)   
+
+![](https://img.shields.io/github/commit-activity/m/bad4iz/file-signature-in-react.svg)   
+![](https://img.shields.io/github/last-commit/bad4iz/file-signature-in-react.svg)   
+
+[npm file-signature-in-react](https://www.npmjs.com/package/file-signature-in-react)     
+
 Компонент на реакте для подписи файла Крипто Про с помощью плагина «КриптоПро ЭЦП Browser plug-in»  
 
 ## ЭЦП в браузере – попробуйте прямо сейчас!
