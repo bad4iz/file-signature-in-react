@@ -4,5 +4,5 @@ node_js:
 
 deploy:
   provider: npm
-  email: "EMAIL_ADDRESS"
-  api_key: "AUTH_TOKEN"
+  email: "opensource@bad4iz.ru"
+  api_key: "372ab11f-2691-4059-abe9-268c26c1d1ec"
