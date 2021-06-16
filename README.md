@@ -50,14 +50,18 @@ export const FileSignatureCryptoPro = () => {
     setFilesForSignature(files);
   };
 
-  const callback = console.log;
-  const callbackError = console.error;
+  const callback = (e) => console.log(e);
+  const callbackError = e => console.error(e);
 
   return (
     <div>
-      <h2>Подписываем файл</h2>
+      <h2>Подписываем файл или файлы</h2>
 
-      <input type="file" onChange={fileInputHandler} />
+      <input
+        type="file"
+        onChange={fileInputHandler}
+        multiple // если хотип подписать много файлов скопом
+      />
 
       <button onClick={() => setClear(true)}> Удалить подпись</button>
 
