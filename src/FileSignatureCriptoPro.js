@@ -1,51 +1,66 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import SelectCert from './SelectCert'
-import { signFile } from './utils'
+import SelectCert from "./SelectCert";
+import { signFile } from "./utils";
 
 const FileSignatureCriptoPro = ({
-  callback = (_) => _,
+  callback = _ => _,
   file = null,
+  files = null,
   clear = false,
   SelectComponent,
-  ButtonComponent = (props) => (
+  ButtonComponent = props => (
     <button className="button btn_green btn_sign" {...props}>
       Подписать
     </button>
   ),
-  callbackError = (_) => _,
+  callbackError = _ => _
 }) => {
-  const [thumbprint, setThumbprint] = useState(null)
-  const [sign, setSign] = useState(null)
-  const [fileNameSign, setFileNameSign] = useState(null)
+  const [thumbprint, setThumbprint] = useState(null);
+  const [sign, setSign] = useState(null);
+  const [fileNameSign, setFileNameSign] = useState(null);
   const cleanOut = () => {
-    setSign(null)
-    setFileNameSign(null)
-  }
+    setSign(null);
+    setFileNameSign(null);
+  };
 
   if (clear && (sign || fileNameSign)) {
-    cleanOut()
+    cleanOut();
   }
 
-  const subscribe = () =>
-    signFile({ thumbprint, file })
-      .then(({ fileName, blob }) => {
-        console.log(fileName)
-        callback({ fileNameSign: fileName, sign: blob })
-        setSign(blob)
-        setFileNameSign(fileName)
-      })
-      .catch((e) => callbackError(String(e)))
+  const signing = () => {
+    if (file) {
+      signFile({ thumbprint, file })
+        .then(({ fileName, blob }) => {
+          console.log(fileName);
+          callback({ fileNameSign: fileName, sign: blob });
+          setSign(blob);
+          setFileNameSign(fileName);
+        })
+        .catch(e => callbackError(String(e)));
+    }
+    if (files && files.length) {
+      const signs = [];
+
+      Promise.all(
+        Array.from(files).map(item => {
+          return signFile({ thumbprint, file: item }).then(({ fileName, blob }) => {
+            signs.push({ fileNameSign: fileName, sign: blob });
+          });
+        })
+      ).then(() => callback(signs));
+    }
+  };
 
   return (
     !sign &&
-    file && (
+    (file || (files && files.length)) && (
       <div>
         {<SelectCert {...{ setThumbprint, callbackError, Component: SelectComponent }} />}
-        {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={subscribe} />}
+        {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={signing} />}
       </div>
     )
-  )
-}
+  );
+};
 
-export default FileSignatureCriptoPro
+export default FileSignatureCriptoPro;
