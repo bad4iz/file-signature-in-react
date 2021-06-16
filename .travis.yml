@@ -16,4 +16,4 @@ deploy:
   email: $EMAIL_ADDRESS
   api_key: $AUTH_TOKEN
   on:
-    branch: master
+    branch: main
