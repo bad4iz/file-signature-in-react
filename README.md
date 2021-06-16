@@ -34,7 +34,7 @@ yarn add file-signature-in-react
 ## Пример использования
 ```js
 import React, { useState } from "react";
-import FileSignature from "./file-signature-in-react";
+import FileSignature from "file-signature-in-react";
 
 export const FileSignatureCryptoPro = () => {
   const [file, setFile] = useState(null);

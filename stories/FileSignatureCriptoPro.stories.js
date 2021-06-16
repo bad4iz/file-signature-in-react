@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { action } from "@storybook/addon-actions";
 
-import FileSignature from "../src";
+import FileSignature from "../dist";
 
 export default {
   title: "Подпись файла",
