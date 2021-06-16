@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
-    "crypto-pro-cadesplugin": "^1.0.20",
+    "crypto-pro-cadesplugin": "^1.0.21",
     "lodash": "^4.17.15"
   },
   "repository": {

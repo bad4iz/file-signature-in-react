@@ -1,6 +1,6 @@
 # File signature
 
-![](https://travis-ci.org/bad4iz/file-signature-in-react.svg?branch=main)
+![](https://travis-ci.com/bad4iz/file-signature-in-react.svg?branch=main)
 ![](https://img.shields.io/npm/v/file-signature-in-react.svg)
 ![](https://img.shields.io/npm/dt/file-signature-in-react.svg)
 
