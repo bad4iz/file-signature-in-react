@@ -37,11 +37,11 @@ import React, { useState } from "react";
 import FileSignature from "file-signature-in-react";
 
 export const FileSignatureCryptoPro = () => {
-  const [file, setFile] = useState(null);
+  const [filesForSignature, setFilesForSignature] = useState(null);
   const [clear, setClear] = useState(false);
 
   const fileInputHandler = ({ target: { files = [] } }) => {
-    setFile(files);
+    setFilesForSignature(files);
   };
 
   const callback = console.log;
@@ -58,7 +58,7 @@ export const FileSignatureCryptoPro = () => {
       <FileSignature
         {...{
           callback, // функция вызовится когда файл подпишится
-          files, // самм файлы для подписи
+          files: filesForSignature, // самм файлы для подписи
           clear, // флаг очищения подписи
           callbackError  // функция вызовится когда будет ошибка
         }}
