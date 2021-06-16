@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { action } from "@storybook/addon-actions";
 
-import FileSignature from "../index";
+import FileSignature from "../src";
 
 export default {
   title: "Подпись файла",
@@ -47,7 +47,9 @@ export const FileSignatureCriptoPro = () => {
 
       <input type="file" onChange={fileInputHandler} multiple="multiple" />
 
-      <button onClick={() => setClear(true)}> Удалить подпись</button>
+      <button type="button" onClick={() => setClear(true)}>
+        Удалить подпись
+      </button>
 
       <FileSignature
         {...{

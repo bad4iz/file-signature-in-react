@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import ccpa from "./crypto-pro-cadesplugin";
+import ccpa from "crypto-pro-cadesplugin";
 
 import Select from "./Select";
 import { extract } from "./utils";

@@ -1,4 +1,4 @@
-import ccpa from "./crypto-pro-cadesplugin";
+import ccpa from "crypto-pro-cadesplugin";
 
 const toBase64 = file =>
   new Promise((resolve, reject) => {

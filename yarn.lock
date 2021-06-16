@@ -4351,6 +4351,21 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
+crypto-pro-cadesplugin@^1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/crypto-pro-cadesplugin/-/crypto-pro-cadesplugin-1.0.19.tgz#bb7adbdd4e59944160fe9b808789e21b5d8bc06f"
+  integrity sha512-oxfkkdhZLRdCmo70AVUXrSHwiq2fwSyIkTxOiK1Gb74PUte4zHgb4vauQe1xhUFEgcLoFbFM3HwvvrcfBiDO8Q==
+  dependencies:
+    babel-cli "^6.6.4"
+    babel-core "^6.7.4"
+    babel-eslint "^10.0.2"
+    babel-loader "^7.1.5"
+    babel-plugin-transform-es2015-modules-umd "^6.6.5"
+    babel-polyfill "^6.7.4"
+    babel-preset-env "^1.7.0"
+    babel-preset-react "^6.5.0"
+    babel-preset-stage-2 "^6.5.0"
+
 crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"

@@ -10,7 +10,7 @@ const FileSignatureCriptoPro = ({
   clear = false,
   SelectComponent,
   ButtonComponent = props => (
-    <button className="button btn_green btn_sign" {...props}>
+    <button type="button" className="button btn_green btn_sign" {...props}>
       Подписать
     </button>
   ),

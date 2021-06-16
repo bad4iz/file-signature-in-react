@@ -17,3 +17,7 @@ deploy:
   api_key: $AUTH_TOKEN
   on:
     branch: main
+  only:
+    - /^v\w*\-?\d\.\d\.\d/
+  except:
+    - branches
