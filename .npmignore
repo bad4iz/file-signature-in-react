@@ -7,12 +7,10 @@
 .babelrc
 .eslintrc
 npm-debug.log
-
 .storybook
 stories
 .gitignore
-docs
-
+src
 scripts
 .vscode
 *.yml
