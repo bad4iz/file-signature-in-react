@@ -13,8 +13,7 @@
 
 > ## пример
 > [https://bad4iz.github.io/file-signature-in-react](https://bad4iz.github.io/file-signature-in-react/)
-> у вас должен быть установлен сертификат и плагин
->
+>> !!! У вас должен быть установлен сертификат и плагин
 >> *[проверить работу установленного плагина и сертификата](https://www.cryptopro.ru/sites/default/files/products/cades/demopage/simple.html)*
 
 
