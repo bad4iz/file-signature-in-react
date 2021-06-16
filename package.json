@@ -1,6 +1,6 @@
 {
   "name": "file-signature-in-react",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Компонент на реакте для подписи файла ЭЦП",
   "unpkg": "dist/index.js",
   "jsdelivr": "dist/index.js",
