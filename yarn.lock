@@ -4351,10 +4351,10 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
-crypto-pro-cadesplugin@^1.0.19:
-  version "1.0.19"
-  resolved "https://registry.yarnpkg.com/crypto-pro-cadesplugin/-/crypto-pro-cadesplugin-1.0.19.tgz#bb7adbdd4e59944160fe9b808789e21b5d8bc06f"
-  integrity sha512-oxfkkdhZLRdCmo70AVUXrSHwiq2fwSyIkTxOiK1Gb74PUte4zHgb4vauQe1xhUFEgcLoFbFM3HwvvrcfBiDO8Q==
+crypto-pro-cadesplugin@^1.0.20:
+  version "1.0.20"
+  resolved "https://registry.yarnpkg.com/crypto-pro-cadesplugin/-/crypto-pro-cadesplugin-1.0.20.tgz#94b4a6d3e1ddc8e2c938428ffb4b848dc413c421"
+  integrity sha512-dLKqMRK0gu6rM1s70lYtciCP1HOb7z8aQXkMI4XG82b6hYSugAFaBqblSfkQHjS4yexWCwJ9VgAHnm8Q9CS9sQ==
   dependencies:
     babel-cli "^6.6.4"
     babel-core "^6.7.4"

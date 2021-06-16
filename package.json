@@ -11,10 +11,10 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook --output-dir ./docs",
     "test": "echo \"Error: no test specified\" ",
-    "ver-patch": "npm version patch -m \"Upgrade patch to  %s\"",
-    "ver-minor": "npm version minor -m \"Upgrade minor to %s\"",
+    "postversion": "git push && git push --tags",
     "publish": "npm publish",
-    "postversion": "git push && git push --tags"
+    "ver-minor": "npm version minor -m \"Upgrade minor to %s\"",
+    "ver-patch": "npm version patch -m \"Upgrade patch to  %s\""
   },
   "keywords": [
     "react-component",
@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
-    "crypto-pro-cadesplugin": "^1.0.19",
+    "crypto-pro-cadesplugin": "^1.0.20",
     "lodash": "^4.17.15"
   },
   "repository": {
