@@ -1,8 +1,19 @@
 language: node_js
-node_js:
-  - "12.13"
+node_js: '14.17.1'
 
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+
+install:
+  - yarn --frozen-lockfile --non-interactive
+
+before_deploy: "echo 'ready?'"
 deploy:
   provider: npm
-  email: "opensource@bad4iz.ru"
-  api_key: "372ab11f-2691-4059-abe9-268c26c1d1ec"
+  email: $EMAIL_ADDRESS
+  api_key: $AUTH_TOKEN
+  on:
+    branch: main
