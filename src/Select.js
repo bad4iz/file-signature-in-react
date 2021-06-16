@@ -1,20 +1,20 @@
-import React from 'react'
+import React from "react";
 
 export const RawSelect = ({ value, options = [], onChange }) => (
   <div className="filter_block_select select_list">
     <select className="select" onChange={onChange}>
-      {options.map((option) => {
-        const optionValue = option && option.value ? option.value : option
-        const optionLabel = option && option.label ? option.label : option
+      {options.map(option => {
+        const optionValue = option && option.value ? option.value : option;
+        const optionLabel = option && option.label ? option.label : option;
         return (
           <option key={optionValue} value={optionValue} defaultValue={value === optionValue}>
             {optionLabel}
           </option>
-        )
+        );
       })}
     </select>
   </div>
-)
+);
 
 const Select = ({ label, ...other }) => {
   return (
@@ -28,7 +28,7 @@ const Select = ({ label, ...other }) => {
         <RawSelect className="select_bank_wrap" {...other} />
       </div>
     </label>
-  )
-}
+  );
+};
 
-export default Select
+export default Select;

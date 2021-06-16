@@ -11,6 +11,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook --output-dir ./docs",
     "test": "echo \"Error: no test specified\" ",
+    "ver-patch": "npm version patch -m \"Upgrade patch to  %s\"",
+    "ver-minor": "npm version minor -m \"Upgrade minor to %s\"",
+    "publish": "npm publish",
     "postversion": "git push && git push --tags"
   },
   "keywords": [

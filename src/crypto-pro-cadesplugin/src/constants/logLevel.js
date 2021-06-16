@@ -10,5 +10,5 @@ module.exports = {
   /**
    * @constant {Number} LOG_LEVEL_ERROR Уровень ведения логов ERROR.
    */
-  LOG_LEVEL_ERROR: 1,
-}
+  LOG_LEVEL_ERROR: 1
+};

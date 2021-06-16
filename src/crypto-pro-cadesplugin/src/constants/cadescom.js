@@ -80,7 +80,7 @@ module.exports = {
     /**
      * @constant {Number} RC4 Алгоритм RSA RC4.
      */
-    RC4: 1,
+    RC4: 1
   },
   /**
    * @constant {Number} CADESCOM_ENCRYPTION_ALGORITHM_DES Алгоритм DES.
@@ -117,7 +117,7 @@ module.exports = {
     /**
      * @constant {Number} CADESCOM_HASH_ALGORITHM_MD5 Алгоритм MD5.
      */
-    MD5: 3,
+    MD5: 3
   },
   /**
    * @constant {Number} CADESCOM_HASH_ALGORITHM_SHA_256 Алгоритм SHA1 с длиной ключа 256 бит.
@@ -154,5 +154,5 @@ module.exports = {
   /**
    * @constant {Number} CADESCOM_XML_SIGNATURE_TYPE_TEMPLATE Подпись по шаблону.
    */
-  CADESCOM_XML_SIGNATURE_TYPE_TEMPLATE: 2,
-}
+  CADESCOM_XML_SIGNATURE_TYPE_TEMPLATE: 2
+};

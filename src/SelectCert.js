@@ -1,39 +1,39 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import ccpa from './crypto-pro-cadesplugin'
+import React, { useEffect, useMemo, useState } from "react";
+import ccpa from "./crypto-pro-cadesplugin";
 
-import Select from './Select'
-import { extract } from './utils'
+import Select from "./Select";
+import { extract } from "./utils";
 
-const useDoCertsList = (callbackError) =>
+const useDoCertsList = callbackError =>
   useMemo(async () => {
-    const certsApi = await ccpa()
-    const certsList = await certsApi.getCertsList()
+    const certsApi = await ccpa();
+    const certsList = await certsApi.getCertsList();
 
     const list = certsList.map(({ subjectInfo, thumbprint }) => ({
       value: thumbprint,
-      label: extract(subjectInfo, 'CN='),
-    }))
-    return list
-  }, [])
+      label: extract(subjectInfo, "CN=")
+    }));
+    return list;
+  }, []);
 
-const SelectCert = ({ setThumbprint = (_) => _, Component = Select, callbackError }) => {
-  const [listSert, setListSert] = useState([{ value: 'подпись', label: 'подпись' }])
+const SelectCert = ({ setThumbprint = _ => _, Component = Select, callbackError }) => {
+  const [listSert, setListSert] = useState([{ value: "подпись", label: "подпись" }]);
 
-  const [selectItem, setSelectItem] = useState(null)
+  const [selectItem, setSelectItem] = useState(null);
 
   useDoCertsList(callbackError)
     .then(setListSert)
-    .catch((e) => callbackError(String(e)))
+    .catch(e => callbackError(String(e)));
 
   useEffect(() => {
     if (selectItem) {
-      setThumbprint(selectItem)
+      setThumbprint(selectItem);
     } else {
-      setThumbprint(listSert[0].value)
+      setThumbprint(listSert[0].value);
     }
-  }, [selectItem, listSert, setThumbprint])
+  }, [selectItem, listSert, setThumbprint]);
 
-  const onChange = ({ target: { value } }) => setSelectItem(value)
+  const onChange = ({ target: { value } }) => setSelectItem(value);
 
   return (
     <Component
@@ -43,7 +43,7 @@ const SelectCert = ({ setThumbprint = (_) => _, Component = Select, callbackErro
       options={listSert}
       onChange={onChange}
     />
-  )
-}
+  );
+};
 
-export default SelectCert
+export default SelectCert;

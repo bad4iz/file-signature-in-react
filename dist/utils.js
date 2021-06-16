@@ -1,8 +1,8 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', './crypto-pro-cadesplugin'], factory);
+    define(["exports", "./crypto-pro-cadesplugin"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('./crypto-pro-cadesplugin'));
+    factory(exports, require("./crypto-pro-cadesplugin"));
   } else {
     var mod = {
       exports: {}
@@ -11,7 +11,7 @@
     global.utils = mod.exports;
   }
 })(this, function (exports, _cryptoProCadesplugin) {
-  'use strict';
+  "use strict";
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -69,7 +69,7 @@
   };
 
   function b64toBlob(b64Data) {
-    var contentType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+    var contentType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
     var sliceSize = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 512;
 
     var byteCharacters = atob(b64Data);
@@ -107,7 +107,7 @@
                 break;
               }
 
-              header = ';base64,';
+              header = ";base64,";
               _context.next = 4;
               return toBase64(file);
 
@@ -125,15 +125,15 @@
 
             case 12:
               sign = _context.sent;
-              contentType = type.split(':')[1];
+              contentType = type.split(":")[1];
               blob = b64toBlob(sign, contentType);
-              return _context.abrupt('return', { blob: blob, fileName: file.name + '.sig' });
+              return _context.abrupt("return", { blob: blob, fileName: file.name + ".sig" });
 
             case 16:
-              return _context.abrupt('return', { blob: null, fileName: null });
+              return _context.abrupt("return", { blob: null, fileName: null });
 
             case 17:
-            case 'end':
+            case "end":
               return _context.stop();
           }
         }
@@ -154,15 +154,15 @@
   };
 
   var extract = exports.extract = function extract(from, what) {
-    var certName = '';
+    var certName = "";
 
     var begin = from.indexOf(what) + what.length;
 
     if (begin >= 0) {
-      var end = from.indexOf(', ', begin);
+      var end = from.indexOf(", ", begin);
       while (end > 0) {
         if (checkQuotes(from.substr(begin, end - begin))) break;
-        end = from.indexOf(', ', end + 1);
+        end = from.indexOf(", ", end + 1);
       }
       certName = end < 0 ? from.substr(begin) : from.substr(begin, end - begin);
     }

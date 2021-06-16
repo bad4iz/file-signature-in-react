@@ -1,8 +1,8 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', 'react', './SelectCert', './utils'], factory);
+    define(["exports", "react", "./SelectCert", "./utils"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'), require('./SelectCert'), require('./utils'));
+    factory(exports, require("react"), require("./SelectCert"), require("./utils"));
   } else {
     var mod = {
       exports: {}
@@ -11,7 +11,7 @@
     global.FileSignatureCriptoPro = mod.exports;
   }
 })(this, function (exports, _react, _SelectCert, _utils) {
-  'use strict';
+  "use strict";
 
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -86,15 +86,17 @@
     } : _ref$callback,
         _ref$file = _ref.file,
         file = _ref$file === undefined ? null : _ref$file,
+        _ref$files = _ref.files,
+        files = _ref$files === undefined ? null : _ref$files,
         _ref$clear = _ref.clear,
         clear = _ref$clear === undefined ? false : _ref$clear,
         SelectComponent = _ref.SelectComponent,
         _ref$ButtonComponent = _ref.ButtonComponent,
         ButtonComponent = _ref$ButtonComponent === undefined ? function (props) {
       return _react2.default.createElement(
-        'button',
-        _extends({ className: 'button btn_green btn_sign' }, props),
-        '\u041F\u043E\u0434\u043F\u0438\u0441\u0430\u0442\u044C'
+        "button",
+        _extends({ className: "button btn_green btn_sign" }, props),
+        "\u041F\u043E\u0434\u043F\u0438\u0441\u0430\u0442\u044C"
       );
     } : _ref$ButtonComponent,
         _ref$callbackError = _ref.callbackError,
@@ -126,25 +128,41 @@
       cleanOut();
     }
 
-    var subscribe = function subscribe() {
-      return (0, _utils.signFile)({ thumbprint: thumbprint, file: file }).then(function (_ref2) {
-        var fileName = _ref2.fileName,
-            blob = _ref2.blob;
+    var signing = function signing() {
+      if (file) {
+        (0, _utils.signFile)({ thumbprint: thumbprint, file: file }).then(function (_ref2) {
+          var fileName = _ref2.fileName,
+              blob = _ref2.blob;
 
-        console.log(fileName);
-        callback({ fileNameSign: fileName, sign: blob });
-        setSign(blob);
-        setFileNameSign(fileName);
-      }).catch(function (e) {
-        return callbackError(String(e));
-      });
+          console.log(fileName);
+          callback({ fileNameSign: fileName, sign: blob });
+          setSign(blob);
+          setFileNameSign(fileName);
+        }).catch(function (e) {
+          return callbackError(String(e));
+        });
+      }
+      if (files && files.length) {
+        var signs = [];
+
+        Promise.all(Array.from(files).map(function (item) {
+          return (0, _utils.signFile)({ thumbprint: thumbprint, file: item }).then(function (_ref3) {
+            var fileName = _ref3.fileName,
+                blob = _ref3.blob;
+
+            signs.push({ fileNameSign: fileName, sign: blob });
+          });
+        })).then(function () {
+          return callback(signs);
+        });
+      }
     };
 
-    return !sign && file && _react2.default.createElement(
-      'div',
+    return !sign && (file || files && files.length) && _react2.default.createElement(
+      "div",
       null,
       _react2.default.createElement(_SelectCert2.default, { setThumbprint: setThumbprint, callbackError: callbackError, Component: SelectComponent }),
-      thumbprint && _react2.default.createElement(ButtonComponent, { disabled: !thumbprint, onClick: subscribe })
+      thumbprint && _react2.default.createElement(ButtonComponent, { disabled: !thumbprint, onClick: signing })
     );
   };
 
