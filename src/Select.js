@@ -2,7 +2,7 @@ import React from "react";
 
 export const RawSelect = ({ value, options = [], onChange }) => (
   <div className="file-signature-crypto-pro__raw-select">
-    <select className="select" onChange={onChange}>
+    <select className="select" onChange={(e)=>onChange(e.target.value)}>
       {options.map(option => {
         const optionValue = option && option.value ? option.value : option;
         const optionLabel = option && option.label ? option.label : option;
