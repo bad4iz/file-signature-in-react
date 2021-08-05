@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import SelectCert from "./SelectCert";
 import { signFile } from "./utils";
 
-const FileSignatureCriptoPro = ({
+const FileSignatureCryptoPro = ({
   callback = _ => _,
   file = null,
   files = null,
   clear = false,
   SelectComponent,
   ButtonComponent = props => (
-    <button type="button" className="button btn_green btn_sign" {...props}>
+    <button type="button" className="file-signature-crypto-pro__btn " {...props}>
       Подписать
     </button>
   ),
@@ -32,7 +32,6 @@ const FileSignatureCriptoPro = ({
     if (file) {
       signFile({ thumbprint, file })
         .then(({ fileName, blob }) => {
-          console.log(fileName);
           callback({ fileNameSign: fileName, sign: blob });
           setSign(blob);
           setFileNameSign(fileName);
@@ -55,7 +54,7 @@ const FileSignatureCriptoPro = ({
   return (
     !sign &&
     (file || (files && files.length)) && (
-      <div>
+      <div className={'file-signature-crypto-pro'}>
         {<SelectCert {...{ setThumbprint, callbackError, Component: SelectComponent }} />}
         {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={signing} />}
       </div>
@@ -63,4 +62,4 @@ const FileSignatureCriptoPro = ({
   );
 };
 
-export default FileSignatureCriptoPro;
+export default FileSignatureCryptoPro;

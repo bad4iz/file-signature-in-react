@@ -79,6 +79,73 @@ export const FileSignatureCryptoPro = () => {
 
 ```
 
+
+
+## Переопределяем компоненты
+```js
+import React, { useState } from "react";
+import FileSignature from "file-signature-in-react";
+
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+
+
+const MySelect = ({options, ...props}) => (
+  <Select {...props} fullWidth>
+    {options.map((item) => (
+      <MenuItem key={item.value} value={item.value}>
+        {item.label}
+      </MenuItem>
+    ))}
+  </Select>
+)
+
+const MyButton = (props) => (
+  <Button {...props} variant={'contained'} color={'primary'}>
+    sign my button
+  </Button>
+);
+
+export const FileSignatureCryptoPro = () => {
+  const [filesForSignature, setFilesForSignature] = useState(null);
+  const [clear, setClear] = useState(false);
+
+  const fileInputHandler = ({ target: { files = [] } }) => {
+    setFilesForSignature(files);
+  };
+
+  const callback = (e) => console.log(e);
+  const callbackError = e => console.error(e);
+
+  return (
+    <div>
+      <h2>Подписываем файл или файлы</h2>
+
+      <input
+        type="file"
+        onChange={fileInputHandler}
+        multiple // если хотим подписать много файлов скопом
+      />
+
+      <button onClick={() => setClear(true)}> Удалить подпись</button>
+
+      <FileSignature
+        {...{
+          SelectComponent: MySelect,
+          ButtonComponent: MyButton,
+          callback, // функция вызовится когда файл подпишится
+          files: filesForSignature, // самм файлы для подписи
+          clear, // флаг очищения подписи
+          callbackError  // функция вызовится когда будет ошибка
+        }}
+      />
+    </div>
+  );
+};
+
+```
+
 > ## Обратите внимание! Для пробной работы с Компонентом вам необходимо иметь
 > * Компьютер под управлением Windows, Linux, MacOS или FreeBSD
 > * Один из современных браузеров (Internet Explorer, Mozilla Firefox, Opera, Chrome, Яндекс.Браузер, Safari) с поддержкой сценариев JavaScript
