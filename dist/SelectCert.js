@@ -163,8 +163,7 @@
       }
     }, [selectItem, listSert, setThumbprint]);
 
-    var onChange = function onChange(_ref4) {
-      var value = _ref4.target.value;
+    var onChange = function onChange(value) {
       return setSelectItem(value);
     };
 

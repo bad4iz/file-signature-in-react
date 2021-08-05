@@ -79,7 +79,7 @@
     return target;
   };
 
-  var FileSignatureCriptoPro = function FileSignatureCriptoPro(_ref) {
+  var FileSignatureCryptoPro = function FileSignatureCryptoPro(_ref) {
     var _ref$callback = _ref.callback,
         callback = _ref$callback === undefined ? function (_) {
       return _;
@@ -95,7 +95,7 @@
         ButtonComponent = _ref$ButtonComponent === undefined ? function (props) {
       return _react2.default.createElement(
         "button",
-        _extends({ type: "button", className: "button btn_green btn_sign" }, props),
+        _extends({ type: "button", className: "file-signature-crypto-pro__btn " }, props),
         "\u041F\u043E\u0434\u043F\u0438\u0441\u0430\u0442\u044C"
       );
     } : _ref$ButtonComponent,
@@ -134,7 +134,6 @@
           var fileName = _ref2.fileName,
               blob = _ref2.blob;
 
-          console.log(fileName);
           callback({ fileNameSign: fileName, sign: blob });
           setSign(blob);
           setFileNameSign(fileName);
@@ -160,11 +159,11 @@
 
     return !sign && (file || files && files.length) && _react2.default.createElement(
       "div",
-      null,
+      { className: "file-signature-crypto-pro" },
       _react2.default.createElement(_SelectCert2.default, { setThumbprint: setThumbprint, callbackError: callbackError, Component: SelectComponent }),
       thumbprint && _react2.default.createElement(ButtonComponent, { disabled: !thumbprint, onClick: signing })
     );
   };
 
-  exports.default = FileSignatureCriptoPro;
+  exports.default = FileSignatureCryptoPro;
 });

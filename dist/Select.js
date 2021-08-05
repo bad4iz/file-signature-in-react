@@ -26,20 +26,6 @@
     };
   }
 
-  var _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
   function _objectWithoutProperties(obj, keys) {
     var target = {};
 
@@ -56,13 +42,15 @@
     var value = _ref.value,
         _ref$options = _ref.options,
         options = _ref$options === undefined ? [] : _ref$options,
-        onChange = _ref.onChange;
+        _onChange = _ref.onChange;
     return _react2.default.createElement(
       "div",
-      { className: "filter_block_select select_list" },
+      { className: "file-signature-crypto-pro__raw-select" },
       _react2.default.createElement(
         "select",
-        { className: "select", onChange: onChange },
+        { className: "select", onChange: function onChange(e) {
+            return _onChange(e.target.value);
+          } },
         options.map(function (option) {
           var optionValue = option && option.value ? option.value : option;
           var optionLabel = option && option.label ? option.label : option;
@@ -85,17 +73,17 @@
       null,
       _react2.default.createElement(
         "div",
-        { className: "form_input_block" },
+        { className: "file-signature-crypto-pro__select__container" },
         label ? _react2.default.createElement(
           "div",
-          { className: "form_txt_wrap" },
+          { className: "file-signature-crypto-pro__select__label" },
           _react2.default.createElement(
             "span",
-            { className: "f-size14 f-clrGrey" },
+            { className: "file-signature-crypto-pro__select__label__text" },
             label
           )
         ) : null,
-        _react2.default.createElement(RawSelect, _extends({ className: "select_bank_wrap" }, other))
+        _react2.default.createElement(RawSelect, other)
       )
     );
   };

@@ -33,7 +33,7 @@ const SelectCert = ({ setThumbprint = _ => _, Component = Select, callbackError 
     }
   }, [selectItem, listSert, setThumbprint]);
 
-  const onChange = (value) => setSelectItem(value);
+  const onChange = value => setSelectItem(value);
 
   return (
     <Component
