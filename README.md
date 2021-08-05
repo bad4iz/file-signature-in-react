@@ -81,7 +81,7 @@ export const FileSignatureCryptoPro = () => {
 
 
 
-## Кастомизация ... Переопределяем компоненты
+## Кастомизация ... Переопределяем компоненты на основе Material UI
 ```js
 import React, { useState } from "react";
 import FileSignature from "file-signature-in-react";
