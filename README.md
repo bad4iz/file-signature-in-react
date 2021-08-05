@@ -60,7 +60,7 @@ export const FileSignatureCryptoPro = () => {
       <input
         type="file"
         onChange={fileInputHandler}
-        multiple // если хотип подписать много файлов скопом
+        multiple // если хотим подписать много файлов скопом
       />
 
       <button onClick={() => setClear(true)}> Удалить подпись</button>
@@ -90,7 +90,7 @@ export const FileSignatureCryptoPro = () => {
 ## для поднятия песочницы используется Storybook
 скачиваем репозиторий
 ```bash
-git git@github.com:bad4iz/file-signature-in-react.git
+git clone git@github.com:bad4iz/file-signature-in-react.git
 ```
 
 устанавливаем зависимости
