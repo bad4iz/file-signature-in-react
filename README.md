@@ -81,7 +81,7 @@ export const FileSignatureCryptoPro = () => {
 
 
 
-## Переопределяем компоненты
+## Кастомизация ... Переопределяем компоненты
 ```js
 import React, { useState } from "react";
 import FileSignature from "file-signature-in-react";
@@ -91,15 +91,21 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 
 
-const MySelect = ({options, ...props}) => (
-  <Select {...props} fullWidth>
-    {options.map((item) => (
-      <MenuItem key={item.value} value={item.value}>
-        {item.label}
-      </MenuItem>
-    ))}
-  </Select>
-)
+const MySelect = ({options, onChange, ...props}) => {
+  const handleChange = (event) => {
+    onChange(event.target.value);
+  };
+
+  return (
+    <Select {...props} fullWidth onChange={handleChange}>
+      {options.map((item) => (
+        <MenuItem key={item.value} value={item.value}>
+          {item.label}
+        </MenuItem>
+      ))}
+    </Select>
+  )
+}
 
 const MyButton = (props) => (
   <Button {...props} variant={'contained'} color={'primary'}>
