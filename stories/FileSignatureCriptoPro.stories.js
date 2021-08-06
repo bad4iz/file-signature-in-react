@@ -54,7 +54,7 @@ export const FileSignatureCriptoPro = () => {
       <FileSignature
         {...{
           onChange,
-          onSelect: console.dir,
+          onSelect:  action("callback выбора подписи"),
           files: filesForSignature,
           clear,
           callbackError: action("callback ошибки")

@@ -62,7 +62,9 @@ const FileSignatureCryptoPro = ({
           console.info('callback is deprecated. use onChange')
           callback(signs)
         }
-      });
+      }).catch(e => callbackError(e));
+
+
     }
   };
 
