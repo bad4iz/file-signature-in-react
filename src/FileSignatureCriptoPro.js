@@ -63,8 +63,6 @@ const FileSignatureCryptoPro = ({
           callback(signs)
         }
       }).catch(e => callbackError(e));
-
-
     }
   };
 
