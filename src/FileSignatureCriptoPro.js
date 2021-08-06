@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 
 import SelectCert from "./SelectCert";
 import { signFile } from "./utils";
+import { useGetCertificate} from "./utils/hooks";
 
 const FileSignatureCryptoPro = ({
   callback,
   onChange = _ => _,
+  onSelect = _=>_,
   file = null,
   files = null,
   clear = false,
@@ -20,6 +22,7 @@ const FileSignatureCryptoPro = ({
   const [thumbprint, setThumbprint] = useState(null);
   const [sign, setSign] = useState(null);
   const [fileNameSign, setFileNameSign] = useState(null);
+  const selectCert = useGetCertificate(thumbprint)
   const cleanOut = () => {
     setSign(null);
     setFileNameSign(null);
@@ -28,6 +31,11 @@ const FileSignatureCryptoPro = ({
   if (clear && (sign || fileNameSign)) {
     cleanOut();
   }
+  useEffect(()=>{
+    if (selectCert) {
+      onSelect(selectCert)
+    }
+  }, [selectCert])
 
   const signing = () => {
     if (file) {

@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react", "crypto-pro-cadesplugin", "./Select", "./utils"], factory);
+    define(["exports", "react", "crypto-pro-cadesplugin", "./Select", "./utils", "./utils/hooks"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"), require("crypto-pro-cadesplugin"), require("./Select"), require("./utils"));
+    factory(exports, require("react"), require("crypto-pro-cadesplugin"), require("./Select"), require("./utils"), require("./utils/hooks"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.cryptoProCadesplugin, global.Select, global.utils);
+    factory(mod.exports, global.react, global.cryptoProCadesplugin, global.Select, global.utils, global.hooks);
     global.SelectCert = mod.exports;
   }
-})(this, function (exports, _react, _cryptoProCadesplugin, _Select, _utils) {
+})(this, function (exports, _react, _cryptoProCadesplugin, _Select, _utils, _hooks) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
@@ -67,79 +67,14 @@
     };
   }();
 
-  function _asyncToGenerator(fn) {
-    return function () {
-      var gen = fn.apply(this, arguments);
-      return new Promise(function (resolve, reject) {
-        function step(key, arg) {
-          try {
-            var info = gen[key](arg);
-            var value = info.value;
-          } catch (error) {
-            reject(error);
-            return;
-          }
-
-          if (info.done) {
-            resolve(value);
-          } else {
-            return Promise.resolve(value).then(function (value) {
-              step("next", value);
-            }, function (err) {
-              step("throw", err);
-            });
-          }
-        }
-
-        return step("next");
-      });
-    };
-  }
-
-  var useDoCertsList = function useDoCertsList(callbackError) {
-    return (0, _react.useMemo)(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var certsApi, certsList, list;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return (0, _cryptoProCadesplugin2.default)();
-
-            case 2:
-              certsApi = _context.sent;
-              _context.next = 5;
-              return certsApi.getCertsList();
-
-            case 5:
-              certsList = _context.sent;
-              list = certsList.map(function (_ref2) {
-                var subjectInfo = _ref2.subjectInfo,
-                    thumbprint = _ref2.thumbprint;
-                return {
-                  value: thumbprint,
-                  label: (0, _utils.extract)(subjectInfo, "CN=")
-                };
-              });
-              return _context.abrupt("return", list);
-
-            case 8:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, undefined);
-    })), []);
-  };
-
-  var SelectCert = function SelectCert(_ref3) {
-    var _ref3$setThumbprint = _ref3.setThumbprint,
-        setThumbprint = _ref3$setThumbprint === undefined ? function (_) {
+  var SelectCert = function SelectCert(_ref) {
+    var _ref$setThumbprint = _ref.setThumbprint,
+        setThumbprint = _ref$setThumbprint === undefined ? function (_) {
       return _;
-    } : _ref3$setThumbprint,
-        _ref3$Component = _ref3.Component,
-        Component = _ref3$Component === undefined ? _Select2.default : _ref3$Component,
-        callbackError = _ref3.callbackError;
+    } : _ref$setThumbprint,
+        _ref$Component = _ref.Component,
+        Component = _ref$Component === undefined ? _Select2.default : _ref$Component,
+        callbackError = _ref.callbackError;
 
     var _useState = (0, _react.useState)([{ value: "подпись", label: "подпись" }]),
         _useState2 = _slicedToArray(_useState, 2),
@@ -151,7 +86,7 @@
         selectItem = _useState4[0],
         setSelectItem = _useState4[1];
 
-    useDoCertsList(callbackError).then(setListSert).catch(function (e) {
+    (0, _hooks.useDoCertsList)(callbackError).then(setListSert).catch(function (e) {
       return callbackError(String(e));
     });
 

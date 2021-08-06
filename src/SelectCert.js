@@ -3,17 +3,8 @@ import ccpa from "crypto-pro-cadesplugin";
 
 import Select from "./Select";
 import { extract } from "./utils";
+import {useDoCertsList} from "./utils/hooks";
 
-const useDoCertsList = callbackError =>
-  useMemo(async () => {
-    const certsApi = await ccpa();
-    const certsList = await certsApi.getCertsList();
-    const list = certsList.map(({ subjectInfo, thumbprint }) => ({
-      value: thumbprint,
-      label: extract(subjectInfo, "CN=")
-    }));
-    return list;
-  }, []);
 
 const SelectCert = ({ setThumbprint = _ => _, Component = Select, callbackError }) => {
   const [listSert, setListSert] = useState([{ value: "подпись", label: "подпись" }]);

@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react", "./SelectCert", "./utils"], factory);
+    define(["exports", "react", "./SelectCert", "./utils", "./utils/hooks"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"), require("./SelectCert"), require("./utils"));
+    factory(exports, require("react"), require("./SelectCert"), require("./utils"), require("./utils/hooks"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.SelectCert, global.utils);
+    factory(mod.exports, global.react, global.SelectCert, global.utils, global.hooks);
     global.FileSignatureCriptoPro = mod.exports;
   }
-})(this, function (exports, _react, _SelectCert, _utils) {
+})(this, function (exports, _react, _SelectCert, _utils, _hooks) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
@@ -80,10 +80,15 @@
   };
 
   var FileSignatureCryptoPro = function FileSignatureCryptoPro(_ref) {
-    var _ref$callback = _ref.callback,
-        callback = _ref$callback === undefined ? function (_) {
+    var callback = _ref.callback,
+        _ref$onChange = _ref.onChange,
+        onChange = _ref$onChange === undefined ? function (_) {
       return _;
-    } : _ref$callback,
+    } : _ref$onChange,
+        _ref$onSelect = _ref.onSelect,
+        onSelect = _ref$onSelect === undefined ? function (_) {
+      return _;
+    } : _ref$onSelect,
         _ref$file = _ref.file,
         file = _ref$file === undefined ? null : _ref$file,
         _ref$files = _ref.files,
@@ -119,6 +124,7 @@
         fileNameSign = _useState6[0],
         setFileNameSign = _useState6[1];
 
+    var selectCert = (0, _hooks.useDoCertsList)(thumbprint);
     var cleanOut = function cleanOut() {
       setSign(null);
       setFileNameSign(null);
@@ -127,6 +133,12 @@
     if (clear && (sign || fileNameSign)) {
       cleanOut();
     }
+
+    (0, _react.useEffect)(function () {
+      if (selectCert) {
+        onSelect(selectCert);
+      }
+    }, [selectCert]);
 
     var signing = function signing() {
       if (file) {
@@ -152,7 +164,11 @@
             signs.push({ fileNameSign: fileName, sign: blob });
           });
         })).then(function () {
-          return callback(signs);
+          onChange(signs);
+          if (typeof callback === 'function') {
+            console.info('callback is deprecated. use onChange');
+            callback(signs);
+          }
         });
       }
     };
