@@ -124,7 +124,7 @@
         fileNameSign = _useState6[0],
         setFileNameSign = _useState6[1];
 
-    var selectCert = (0, _hooks.useDoCertsList)(thumbprint);
+    var selectCert = (0, _hooks.useGetCertificate)(thumbprint);
     var cleanOut = function cleanOut() {
       setSign(null);
       setFileNameSign(null);
@@ -133,7 +133,6 @@
     if (clear && (sign || fileNameSign)) {
       cleanOut();
     }
-
     (0, _react.useEffect)(function () {
       if (selectCert) {
         onSelect(selectCert);

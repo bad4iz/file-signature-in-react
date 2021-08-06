@@ -77,8 +77,7 @@
                     thumbprint = _ref2.thumbprint;
                 return {
                   value: thumbprint,
-                  label: (0, _utils.extract)(subjectInfo, "CN="),
-                  i: i
+                  label: (0, _utils.extract)(subjectInfo, "CN=")
                 };
               }));
 

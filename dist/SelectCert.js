@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react", "crypto-pro-cadesplugin", "./Select", "./utils", "./utils/hooks"], factory);
+    define(["exports", "react", "crypto-pro-cadesplugin", "./Select", "./utils/hooks"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"), require("crypto-pro-cadesplugin"), require("./Select"), require("./utils"), require("./utils/hooks"));
+    factory(exports, require("react"), require("crypto-pro-cadesplugin"), require("./Select"), require("./utils/hooks"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.cryptoProCadesplugin, global.Select, global.utils, global.hooks);
+    factory(mod.exports, global.react, global.cryptoProCadesplugin, global.Select, global.hooks);
     global.SelectCert = mod.exports;
   }
-})(this, function (exports, _react, _cryptoProCadesplugin, _Select, _utils, _hooks) {
+})(this, function (exports, _react, _cryptoProCadesplugin, _Select, _hooks) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
@@ -78,15 +78,15 @@
 
     var _useState = (0, _react.useState)([{ value: "подпись", label: "подпись" }]),
         _useState2 = _slicedToArray(_useState, 2),
-        listSert = _useState2[0],
-        setListSert = _useState2[1];
+        listCert = _useState2[0],
+        setListCert = _useState2[1];
 
     var _useState3 = (0, _react.useState)(null),
         _useState4 = _slicedToArray(_useState3, 2),
         selectItem = _useState4[0],
         setSelectItem = _useState4[1];
 
-    (0, _hooks.useDoCertsList)(callbackError).then(setListSert).catch(function (e) {
+    (0, _hooks.useDoCertsList)(callbackError).then(setListCert).catch(function (e) {
       return callbackError(String(e));
     });
 
@@ -94,19 +94,19 @@
       if (selectItem) {
         setThumbprint(selectItem);
       } else {
-        setThumbprint(listSert[0].value);
+        setThumbprint(listCert[0].value);
       }
-    }, [selectItem, listSert, setThumbprint]);
+    }, [selectItem, listCert, setThumbprint]);
 
     var onChange = function onChange(value) {
       return setSelectItem(value);
     };
 
     return _react2.default.createElement(Component, {
-      defaultValue: listSert[0].value,
+      defaultValue: listCert[0].value,
       label: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043A\u0430\u0442",
       name: "thumbprint",
-      options: listSert,
+      options: listCert,
       onChange: onChange
     });
   };

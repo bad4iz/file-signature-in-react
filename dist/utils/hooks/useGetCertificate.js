@@ -16,7 +16,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.useDoCertsList = undefined;
+  exports.useGetCertificate = undefined;
 
   var _cryptoProCadesplugin2 = _interopRequireDefault(_cryptoProCadesplugin);
 
@@ -93,7 +93,7 @@
     };
   }();
 
-  var useDoCertsList = exports.useDoCertsList = function useDoCertsList(thumbprint) {
+  var useGetCertificate = exports.useGetCertificate = function useGetCertificate(thumbprint) {
     var _useState = (0, _react.useState)(),
         _useState2 = _slicedToArray(_useState, 2),
         certificate = _useState2[0],
