@@ -8,7 +8,6 @@ const useDoCertsList = callbackError =>
   useMemo(async () => {
     const certsApi = await ccpa();
     const certsList = await certsApi.getCertsList();
-
     const list = certsList.map(({ subjectInfo, thumbprint }) => ({
       value: thumbprint,
       label: extract(subjectInfo, "CN=")

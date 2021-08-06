@@ -4,7 +4,8 @@ import SelectCert from "./SelectCert";
 import { signFile } from "./utils";
 
 const FileSignatureCryptoPro = ({
-  callback = _ => _,
+  callback,
+  onChange = _ => _,
   file = null,
   files = null,
   clear = false,
@@ -47,7 +48,13 @@ const FileSignatureCryptoPro = ({
             signs.push({ fileNameSign: fileName, sign: blob });
           });
         })
-      ).then(() => callback(signs));
+      ).then(() => {
+        onChange(signs)
+        if(typeof callback === 'function'){
+          console.info('callback is deprecated. use onChange')
+          callback(signs)
+        }
+      });
     }
   };
 

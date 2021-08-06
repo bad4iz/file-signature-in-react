@@ -25,10 +25,10 @@
 1. Просто подключаем Компонент к себе в проект
 2. Передаем в Компонент
  a. `files` - файлы которые надо подписать
- b. `callback` функцию  callback которая сработает когда файл будет подписан.
+ b. `onChange` функцию  callback которая сработает когда файл, будет подписан.
  c. `clear` - флаг очищения компонента
- d. `callbackError`  функция вызовится когда будет ошибка
-3. В callback прийдет массив из `{fileNameSign:<String>, sign:<Blob>}`. `fileNameSign` - название файла подписи и сама `sign` - подпись в формате `Blob`
+ d. `callbackError`  функция вызовется когда, будет ошибка
+3. В onChange прейдет массив из `{fileNameSign:<String>, sign:<Blob>}`. `fileNameSign` - название файла подписи и сама `sign` - подпись в формате `Blob`
 
 ## Как подключить
 ```bash
@@ -67,7 +67,7 @@ export const FileSignatureCryptoPro = () => {
 
       <FileSignature
         {...{
-          callback, // функция вызовится когда файл подпишится
+          onChange, // функция вызовится когда файл подпишится
           files: filesForSignature, // самм файлы для подписи
           clear, // флаг очищения подписи
           callbackError  // функция вызовится когда будет ошибка
@@ -140,7 +140,7 @@ export const FileSignatureCryptoPro = () => {
         {...{
           SelectComponent: MySelect,
           ButtonComponent: MyButton,
-          callback, // функция вызовится когда файл подпишится
+          onChange, // функция вызовится когда файл подпишится
           files: filesForSignature, // самм файлы для подписи
           clear, // флаг очищения подписи
           callbackError  // функция вызовится когда будет ошибка
