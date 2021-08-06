@@ -25,7 +25,7 @@ export const FileSignatureCriptoPro = () => {
     }
   }, [clear]);
 
-  const callback = e => {
+  const onChange = e => {
     action("callback подписи")(e);
     if (Array.isArray(e)) {
       e.forEach(item => downloadAsFile(item.sign, item.fileNameSign));
@@ -53,7 +53,7 @@ export const FileSignatureCriptoPro = () => {
 
       <FileSignature
         {...{
-          callback,
+          onChange,
           files: filesForSignature,
           clear,
           callbackError: action("callback ошибки")

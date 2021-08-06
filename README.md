@@ -50,7 +50,7 @@ export const FileSignatureCryptoPro = () => {
     setFilesForSignature(files);
   };
 
-  const callback = (e) => console.log(e);
+  const onChange = (e) => console.log(e);
   const callbackError = e => console.error(e);
 
   return (
@@ -121,7 +121,7 @@ export const FileSignatureCryptoPro = () => {
     setFilesForSignature(files);
   };
 
-  const callback = (e) => console.log(e);
+  const onChange = (e) => console.log(e);
   const callbackError = e => console.error(e);
 
   return (
