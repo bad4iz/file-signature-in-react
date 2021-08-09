@@ -74,7 +74,8 @@
     } : _ref$setThumbprint,
         _ref$Component = _ref.Component,
         Component = _ref$Component === undefined ? _Select2.default : _ref$Component,
-        callbackError = _ref.callbackError;
+        callbackError = _ref.callbackError,
+        value = _ref.value;
 
     var _useState = (0, _react.useState)([{ value: "подпись", label: "подпись" }]),
         _useState2 = _slicedToArray(_useState, 2),
