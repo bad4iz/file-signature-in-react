@@ -177,7 +177,7 @@
     return !sign && (file || files && files.length) && _react2.default.createElement(
       "div",
       { className: "file-signature-crypto-pro" },
-      _react2.default.createElement(_SelectCert2.default, { setThumbprint: setThumbprint, callbackError: callbackError, Component: SelectComponent }),
+      _react2.default.createElement(_SelectCert2.default, { setThumbprint: setThumbprint, callbackError: callbackError, Component: SelectComponent, value: thumbprint }),
       thumbprint && _react2.default.createElement(ButtonComponent, { disabled: !thumbprint, onClick: signing })
     );
   };

@@ -70,7 +70,7 @@ const FileSignatureCryptoPro = ({
     !sign &&
     (file || (files && files.length)) && (
       <div className="file-signature-crypto-pro">
-        {<SelectCert {...{ setThumbprint, callbackError, Component: SelectComponent }} />}
+        {<SelectCert {...{ setThumbprint, callbackError, Component: SelectComponent, value:thumbprint}} />}
         {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={signing} />}
       </div>
     )

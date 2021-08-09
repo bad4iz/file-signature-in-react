@@ -29,6 +29,7 @@ const SelectCert = ({ setThumbprint = _ => _, Component = Select, callbackError 
       defaultValue={listCert[0].value}
       label="Выберите сертификат"
       name="thumbprint"
+      value={value}
       options={listCert}
       onChange={onChange}
     />

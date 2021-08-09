@@ -106,6 +106,7 @@
       defaultValue: listCert[0].value,
       label: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043A\u0430\u0442",
       name: "thumbprint",
+      value: value,
       options: listCert,
       onChange: onChange
     });
