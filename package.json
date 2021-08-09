@@ -26,12 +26,12 @@
   ],
   "author": "bad4iz <fileSignatureInReact@bad4iz.ru>",
   "devDependencies": {
-    "@storybook/addon-actions": "^5.3.8",
+    "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-centered": "^5.1.10",
     "@storybook/addon-links": "^5.3.8",
     "@storybook/addons": "^5.3.8",
     "@storybook/preset-create-react-app": "^1.5.2",
-    "@storybook/react": "^5.3.8",
+    "@storybook/react": "^6.3.6",
     "babel-cli": "^6.6.4",
     "babel-core": "^6.7.4",
     "babel-eslint": "^10.0.2",
@@ -51,7 +51,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "*",
     "eslint-plugin-react": "^7.10.0",
-    "nodemon": "^1.17.2",
+    "nodemon": "^2.0.12",
     "prettier": "*",
     "redux-logger": "*",
     "sinon": "^7.3.2"

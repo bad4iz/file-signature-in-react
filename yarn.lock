@@ -4580,20 +4580,10 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
-crypto-pro-cadesplugin@^1.0.21:
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/crypto-pro-cadesplugin/-/crypto-pro-cadesplugin-1.0.21.tgz#57811c3cad2789ad4a4eff8357d4f410027c89b7"
-  integrity sha512-o3osKG81OrIP2lOqDJbvnFOcIvvZ2pTMo76Rf9Uo0q50F4vu3KRHgI7bFRs+CWhtJulZIfxdb/V5pqW+7fa6Jg==
-  dependencies:
-    babel-cli "^6.6.4"
-    babel-core "^6.7.4"
-    babel-eslint "^10.0.2"
-    babel-loader "^7.1.5"
-    babel-plugin-transform-es2015-modules-umd "^6.6.5"
-    babel-polyfill "^6.7.4"
-    babel-preset-env "^1.7.0"
-    babel-preset-react "^6.5.0"
-    babel-preset-stage-2 "^6.5.0"
+crypto-pro-cadesplugin@^1.0.22:
+  version "1.0.22"
+  resolved "https://registry.yarnpkg.com/crypto-pro-cadesplugin/-/crypto-pro-cadesplugin-1.0.22.tgz#aaac4488fe84cf87d106983dcdebdb291af144b5"
+  integrity sha512-NsQp6EVuLPKynwxBAXo82tQaHcc8hPTOIKIYa2va24ma38y2hXKt53yMsz4W+cLWHqgmsiTAHQk+pX+FbDiAaQ==
 
 crypto-random-string@^1.0.0:
   version "1.0.0"
