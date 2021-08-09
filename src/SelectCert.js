@@ -5,7 +5,7 @@ import Select from "./Select";
 import {useDoCertsList} from "./utils/hooks";
 
 
-const SelectCert = ({ setThumbprint = _ => _, Component = Select, callbackError }) => {
+const SelectCert = ({ setThumbprint = _ => _, Component = Select, callbackError, value }) => {
   const [listCert, setListCert] = useState([{ value: "подпись", label: "подпись" }]);
 
   const [selectItem, setSelectItem] = useState(null);
