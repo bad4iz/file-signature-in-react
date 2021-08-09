@@ -1,1 +1,1 @@
-export {default}  from "./dist/index";
+export {default}  from "./src";
