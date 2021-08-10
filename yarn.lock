@@ -4961,10 +4961,10 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
-crypto-pro-cadesplugin@^1.0.22:
-  version "1.0.22"
-  resolved "https://registry.yarnpkg.com/crypto-pro-cadesplugin/-/crypto-pro-cadesplugin-1.0.22.tgz#aaac4488fe84cf87d106983dcdebdb291af144b5"
-  integrity sha512-NsQp6EVuLPKynwxBAXo82tQaHcc8hPTOIKIYa2va24ma38y2hXKt53yMsz4W+cLWHqgmsiTAHQk+pX+FbDiAaQ==
+crypto-pro-cadesplugin@^1.0.24:
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/crypto-pro-cadesplugin/-/crypto-pro-cadesplugin-1.0.24.tgz#c7b2e03b06749527f182bf08c7dc731ab0d6ce4a"
+  integrity sha512-SGJcy7gf7lrP2VWksaGgBwgfneoThrlYoK5oI8g/nXQnj/8OIgOljMgjiAgKbY6gPAkRsDoSvw1naX2apWbcrQ==
 
 crypto-random-string@^2.0.0:
   version "2.0.0"

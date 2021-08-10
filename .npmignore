@@ -10,7 +10,7 @@ npm-debug.log
 .storybook
 stories
 .gitignore
-
+src
 scripts
 .vscode
 *.yml
