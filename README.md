@@ -181,6 +181,7 @@ http://localhost:6006/
 
 тут можно будет проверить свои кейсы
 
+-------------------------------------------------------
 
 > the ide is provided by the JetBrains to support open source https://jb.gg/OpenSource.
 
