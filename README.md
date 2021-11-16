@@ -182,8 +182,9 @@ http://localhost:6006/
 тут можно будет проверить свои кейсы
 
 -------------------------------------------------------
+> ![](https://newreleases.io/icon/github/JetBrains)
 
-> the ide is provided by the JetBrains to support open source https://jb.gg/OpenSource.
+ IDE предоставлена команией JetBrains, для поддержки опенсорса  https://jb.gg/OpenSource.   
+> the IDE is provided by the JetBrains to support open source https://jb.gg/OpenSource.   
 
-> ide предоставлена команией JetBrains, для поддержки опенсорса  https://jb.gg/OpenSource.
  
