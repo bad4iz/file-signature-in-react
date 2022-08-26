@@ -1,5 +1,3 @@
-import React from "react";
-
 export const RawSelect = ({ value, options = [], onChange }) => (
   <div className="file-signature-crypto-pro__raw-select">
     <select className="select" onChange={(e)=>onChange(e.target.value)}>
