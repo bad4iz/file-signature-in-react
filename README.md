@@ -7,7 +7,7 @@
 ![](https://img.shields.io/github/commit-activity/m/bad4iz/file-signature-in-react.svg)
 ![](https://img.shields.io/github/last-commit/bad4iz/file-signature-in-react.svg)
 
-[npm file-signature-in-react](https://www.npmjs.com/package/file-signature-in-react)   
+[npm file-signature-in-react](https://www.npmjs.com/package/file-signature-in-react)
 
 Компонент на реакте для подписи файла Крипто Про с помощью плагина «КриптоПро ЭЦП Browser plug-in»
 
@@ -167,16 +167,16 @@ export const FileSignatureCryptoPro = () => {
 git clone git@github.com:bad4iz/file-signature-in-react.git
 ```
 
-устанавливаем зависимости
+Устанавливаем зависимости
 ```bash
 yarn
 ```
 
-для запуска используем команду
+Для запуска используем команду
 ```bash
 yarn storybook
 ```
-подымится локальный сервер на порту 6006
+Поднимется локальный сервер на порту 6006
 http://localhost:6006/
 
 тут можно будет проверить свои кейсы
@@ -184,7 +184,7 @@ http://localhost:6006/
 -------------------------------------------------------
 > ![](https://newreleases.io/icon/github/JetBrains)
 
- IDE предоставлена команией JetBrains, для поддержки опенсорса  https://jb.gg/OpenSource.   
-> the IDE is provided by the JetBrains to support open source https://jb.gg/OpenSource.   
+ IDE предоставлена компанией JetBrains, для поддержки опенсорса  https://jb.gg/OpenSource.
+> the IDE is provided by the JetBrains to support open source https://jb.gg/OpenSource.
 
- 
+
