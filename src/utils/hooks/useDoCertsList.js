@@ -1,6 +1,6 @@
 import {useMemo} from "react";
 import ccpa from "crypto-pro-cadesplugin";
-import {extract} from "../../utils";
+import {extract} from "src/utils/utils";
 
 export const useDoCertsList = callbackError =>
   useMemo(async () => {
