@@ -1,6 +1,5 @@
 import {useMemo, useState} from "react";
 import ccpa from "crypto-pro-cadesplugin";
-import {extract} from "src/utils/utils";
 
 export const useGetCertificate = thumbprint =>{
   const [certificate, setCertificate] = useState()
