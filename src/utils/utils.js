@@ -1,13 +1,6 @@
 import ccpa from "crypto-pro-cadesplugin";
+import {toBase64} from "src/utils/toBase64";
 
-const toBase64 = file =>
-  new Promise((resolve, reject) => {
-    
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  });
 
 function b64toBlob(b64Data, contentType = "", sliceSize = 512) {
   const byteCharacters = atob(b64Data);
