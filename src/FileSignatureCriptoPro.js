@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 import SelectCert from "./SelectCert";
-import { signFile } from "src/utils/utils";
+import { signFile } from "src/utils/signFile";
 import { useGetCertificate} from "./utils/hooks";
 
 const FileSignatureCryptoPro = ({
