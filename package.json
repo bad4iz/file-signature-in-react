@@ -1,22 +1,71 @@
 {
   "name": "file-signature-in-react",
+  "private": false,
   "version": "1.1.30",
   "description": "Компонент на реакте для подписи файла ЭЦП",
-  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint --fix 'src/**/*.{jsx,ts,tsx}'",
+    "format": "prettier --write src//**/*.{ts,tsx,css} --config ./.prettierrc",
+    "prepare": "husky install"
+  },
+  "_husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "yarn  eslint",
+      "yarn  format"
+    ]
+  },
   "files": [
     "dist"
   ],
-  "scripts": {
-    "build": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist --copy-files",
-    "lint": "eslint ./src",
-    "lintfix": "eslint ./src --fix",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook --output-dir ./docs",
-    "test": "echo \"Error: no test specified\" ",
-    "postversion": "git push && git push --tags",
-    "publish": "npm publish",
-    "ver-minor": "npm version minor -m \"Upgrade minor to %s\"",
-    "ver-patch": "npm version patch -m \"Upgrade patch to  %s\""
+  "exports": {
+    ".": {
+      "import": "./dist/file-signature-in-react.es.js",
+      "require": "./dist/file-signature-in-react.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "main": "./dist/file-signature-in-react.umd.js",
+  "module": "./dist/file-signature-in-react.es.js",
+  "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "@types/node": "18.7.6",
+    "@types/react": "18.0.17",
+    "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "5.34.0",
+    "@typescript-eslint/parser": "5.34.0",
+    "@vitejs/plugin-react": "2.1.0",
+    "eslint": "8.2.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react": "7.30.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
+    "prettier": "2.7.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.6.4",
+    "vite": "3.1.0",
+    "vite-plugin-dts": "1.4.1",
+    "vite-plugin-linter": "1.2.0",
+    "vite-tsconfig-paths": "3.5.0"
+  },
+  "peerDependencies": {
+    "react": "16.8.0 || >=17.x",
+    "react-dom": "16.8.0 || >=17.x"
   },
   "keywords": [
     "react-component",
@@ -27,45 +76,6 @@
     "file"
   ],
   "author": "bad4iz <fileSignatureInReact@bad4iz.ru>",
-  "devDependencies": {
-    "@storybook/addon-actions": "6.5.10",
-    "@storybook/addon-centered": "5.3.21",
-    "@storybook/addon-links": "6.5.10",
-    "@storybook/addons": "6.5.10",
-    "@storybook/preset-create-react-app": "4.1.2",
-    "@storybook/react": "6.5.10",
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.3",
-    "babel-eslint": "10.1.0",
-    "babel-loader": "8.2.5",
-    "babel-plugin-transform-es2015-modules-umd": "6.24.1",
-    "babel-polyfill": "6.26.0",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-react": "6.24.1",
-    "babel-preset-stage-2": "6.24.1",
-    "enzyme": "3.11.0",
-    "eslint": "8.23.1",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-config-equimper": "2.2.2",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-babel": "5.3.1",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jsx-a11y": "6.6.1",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.31.8",
-    "nodemon": "2.0.19",
-    "prettier": "2.7.1",
-    "sinon": "14.0.0"
-  },
-  "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  },
-  "dependencies": {
-    "babel-runtime": "^6.26.0",
-    "crypto-pro-cadesplugin": "^1.0.24",
-    "lodash": "^4.17.15"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bad4iz/file-signature-in-react.git"
