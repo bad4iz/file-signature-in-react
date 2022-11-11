@@ -1,6 +1,6 @@
 import {checkQuotes} from "./checkQuotes";
 
-export const extract = (from, what) => {
+export const extract = (from:any, what:any) => {
   let certName = "";
 
   const begin = from.indexOf(what) + what.length;

@@ -1,30 +1,63 @@
-import './App.css'
+import { useState, useEffect } from 'react'
 
-import { useState } from 'react'
-
-import reactLogo from './assets/react.svg'
+import FileSignatureCryptoPro from './components'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [filesForSignature, setFilesForSignature] = useState(null)
+  const [clear, setClear] = useState(false)
 
+  const fileInputHandler = ({ target: { files = [] } }) => {
+    if (filesForSignature && filesForSignature !== files[0]) {
+      setClear(true)
+    }
+    setFilesForSignature(files)
+  }
+
+  useEffect(() => {
+    if (clear) {
+      setClear(false)
+    }
+  }, [clear])
+
+  // @ts-ignore
+  // eslint-disable-next-line no-console
+  const log = (...e) => console.log(...e)
+
+  const onChange = (e: any) => {
+    // @ts-ignore
+    // eslint-disable-next-line no-console
+    log('callback подписи', e)
+    if (Array.isArray(e)) {
+      e.forEach((item) => downloadAsFile(item.sign, item.fileNameSign))
+    } else {
+      downloadAsFile(e.sign, e.fileNameSign)
+    }
+  }
+
+  const downloadAsFile = (data: any, name = 'example.txt') => {
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(data)
+    a.download = name
+    a.click()
+  }
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <h2>Подписываем файл</h2>
+      {/*// @ts-ignore*/}
+      <input type="file" onChange={fileInputHandler} multiple="multiple" />
+
+      <button type="button" onClick={() => setClear(true)}>
+        Удалить подпись
+      </button>
+      <FileSignatureCryptoPro
+        {...{
+          onChange,
+          onSelect: () => log('callback выбора подписи'),
+          files: filesForSignature,
+          clear,
+          callbackError: () => log('callback ошибки'),
+        }}
+      />
     </div>
   )
 }

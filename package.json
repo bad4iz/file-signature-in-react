@@ -84,6 +84,7 @@
   "license": "ISC",
   "homepage": "https://github.com/bad4iz/file-signature-in-react#readme",
   "dependencies": {
+    "crypto-pro-cadesplugin": "^1.0.26",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
