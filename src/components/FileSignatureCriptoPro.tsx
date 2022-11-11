@@ -1,24 +1,24 @@
 import React, {useEffect, useState} from "react";
 
 import SelectCert from "./SelectCert";
-import { signFile } from "src/utils/signFile";
-import { useGetCertificate} from "./utils/hooks";
+import { useGetCertificate } from "./utils/hooks";
+import { signFile } from "./utils/signFile";
 
 const FileSignatureCryptoPro = ({
   callback,
-  onChange = _ => _,
-  onSelect = _=>_,
+  onChange = (_: any) => _,
+  onSelect = (_: any)=>_,
   file = null,
   files = null,
   clear = false,
   SelectComponent,
-  ButtonComponent = props => (
+  ButtonComponent = (props: any) => (
     <button type="button" className="file-signature-crypto-pro__btn " {...props}>
       Подписать
     </button>
   ),
-  callbackError = _ => _
-}) => {
+  callbackError = (_: any) => _
+}: any) => {
   const [thumbprint, setThumbprint] = useState(null);
   const [sign, setSign] = useState(null);
   const [fileNameSign, setFileNameSign] = useState(null);
@@ -40,25 +40,26 @@ const FileSignatureCryptoPro = ({
   const signing = () => {
     if (file) {
       signFile({ thumbprint, file })
-        .then(({ fileName, blob }) => {
+        .then(({ fileName, blob }: any) => {
           callback({ fileNameSign: fileName, sign: blob });
           setSign(blob);
           setFileNameSign(fileName);
         })
-        .catch(e => callbackError(String(e)));
+        .catch((e: any) => callbackError(String(e)));
     }
     if (files && files.length) {
-      const signs = [];
+      const signs: any = [];
 
       Promise.all(
         Array.from(files).map(item => {
-          return signFile({ thumbprint, file: item }).then(({ fileName, blob }) => {
+          return signFile({ thumbprint, file: item }).then(({ fileName, blob }: any) => {
             signs.push({ fileNameSign: fileName, sign: blob });
           });
         })
       ).then(() => {
         onChange(signs)
         if(typeof callback === 'function'){
+          // eslint-disable-next-line no-console
           console.info('callback is deprecated. use onChange')
           callback(signs)
         }
