@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import FileSignatureCryptoPro from './components'
 
@@ -6,7 +6,7 @@ function App() {
   const [filesForSignature, setFilesForSignature] = useState(null)
   const [clear, setClear] = useState(false)
 
-  const fileInputHandler = ({ target: { files = [] } }) => {
+  const fileInputHandler = ({ target: { files = [] } }: any) => {
     if (filesForSignature && filesForSignature !== files[0]) {
       setClear(true)
     }
@@ -19,13 +19,10 @@ function App() {
     }
   }, [clear])
 
-  // @ts-ignore
   // eslint-disable-next-line no-console
-  const log = (...e) => console.log(...e)
+  const log = (...e: any) => console.log(...e)
 
   const onChange = (e: any) => {
-    // @ts-ignore
-    // eslint-disable-next-line no-console
     log('callback подписи', e)
     if (Array.isArray(e)) {
       e.forEach((item) => downloadAsFile(item.sign, item.fileNameSign))
@@ -43,8 +40,7 @@ function App() {
   return (
     <div className="App">
       <h2>Подписываем файл</h2>
-      {/*// @ts-ignore*/}
-      <input type="file" onChange={fileInputHandler} multiple="multiple" />
+      <input type="file" onChange={fileInputHandler} multiple />
 
       <button type="button" onClick={() => setClear(true)}>
         Удалить подпись
