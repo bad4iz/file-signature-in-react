@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
 
 import FileSignatureCryptoPro from './components'
-
+import {SignInterface} from './components/types'
+/**
+ * Пример использования плагина
+ *
+ */
 function App() {
   const [filesForSignature, setFilesForSignature] = useState(null)
   const [clear, setClear] = useState(false)
@@ -20,10 +24,10 @@ function App() {
   }, [clear])
 
   // eslint-disable-next-line no-console
-  const log = (...e: any) => console.log(...e)
+  const log = (message: string, e?:SignInterface) => console.log(message, ...e)
 
-  const onChange = (e: any) => {
-    log('callback подписи', e)
+  const onChange = (e: SignInterface ) => {
+    log('callback подписи', e  )
     if (Array.isArray(e)) {
       e.forEach((item) => downloadAsFile(item.sign, item.fileNameSign))
     } else {

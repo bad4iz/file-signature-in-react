@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 
 import SelectCert from "./SelectCert";
+import {SignInterface} from './types';
 import { useGetCertificate } from "./utils/hooks";
 import { signFile } from "./utils/signFile";
+
 
 const FileSignatureCryptoPro = ({
   callback,
@@ -17,7 +19,7 @@ const FileSignatureCryptoPro = ({
       Подписать
     </button>
   ),
-  callbackError = (_: any) => _
+  callbackError = (_: string) => _
 }: any) => {
   const [thumbprint, setThumbprint] = useState(null);
   const [sign, setSign] = useState(null);
@@ -48,7 +50,7 @@ const FileSignatureCryptoPro = ({
         .catch((e: any) => callbackError(String(e)));
     }
     if (files && files.length) {
-      const signs: any = [];
+      const signs: SignInterface[] = [];
 
       Promise.all(
         Array.from(files).map(item => {
