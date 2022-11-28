@@ -1,13 +1,15 @@
 // @ts-ignore
 import ccpa from 'crypto-pro-cadesplugin'
 
+import {FileInterface} from "../types";
 import { b64toBlob } from './b64toBlob'
 import { toBase64 } from './toBase64'
 
-export const signFile = async ({ file = null, thumbprint }: any) => {
+export const signFile = async ({ file = null, thumbprint }: any): Promise<FileInterface> => {
   if (file) {
     const header = ';base64,'
     const sFileData = await toBase64(file)
+
     const sBase64Data = sFileData.substr(sFileData.indexOf(header) + header.length)
     const type = sFileData.substr(0, sFileData.indexOf(header))
 
