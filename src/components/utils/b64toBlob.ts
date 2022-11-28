@@ -1,5 +1,12 @@
-export function b64toBlob(b64Data: any, contentType = '', sliceSize = 512): Blob {
-  const byteCharacters = atob(b64Data)
+/**
+ * Конвертирует  base64 в Blob object.
+ *
+ * @param {string} b64Data
+ * @param {string} contentType
+ * @param {number} sliceSize
+ */
+export function b64toBlob(b64Data: string, contentType = '', sliceSize = 512): Blob {
+  const byteCharacters = window.atob(b64Data)
 
   const byteArrays = []
 
