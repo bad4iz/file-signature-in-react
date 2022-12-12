@@ -24,7 +24,7 @@ function App() {
   }, [clear])
 
   // eslint-disable-next-line no-console
-  const log = (message: string, e?:SignInterface) => console.log(message, ...e)
+  const log = (message: string, e?:SignInterface) => console.log(message, e)
 
   const onChange = (e: SignInterface ) => {
     log('callback подписи', e  )
