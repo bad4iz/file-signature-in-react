@@ -1,9 +1,14 @@
 /**
  * Конвертирует  base64 в Blob object.
  *
- * @param {string} b64Data
- * @param {string} contentType
- * @param {number} sliceSize
+ * @param {string} b64Data - Blob data.
+ * @param {string} contentType - Content type.
+ * @param {number} sliceSize - Size of the slice.
+ * @returns {Blob}.
+ * @example ---
+ * const sign = await certsApi.signBase64(thumbprint, sBase64Data)
+ * const contentType = type.split(':')[1]
+ * const blob = b64toBlob(sign, contentType)
  */
 export function b64toBlob(b64Data: string, contentType = '', sliceSize = 512): Blob {
   const byteCharacters = window.atob(b64Data)
