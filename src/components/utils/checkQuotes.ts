@@ -2,7 +2,7 @@
  * Проверка содержания строки на ковычки.
  *
  * @param str
- * @return {boolean}
+ * @returns {boolean}
  */
 export const checkQuotes = (str: string): boolean => {
   let result = 0
