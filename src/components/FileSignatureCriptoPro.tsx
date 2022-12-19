@@ -1,82 +1,94 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react'
 
-import SelectCert from "./SelectCert";
-import {SignInterface} from './types';
-import { useGetCertificate } from "./utils/hooks";
-import { signFile } from "./utils/signFile";
+import SelectCert from './SelectCert'
+import { SignInterface } from './types'
+import { useGetCertificate } from './utils/hooks'
+import { signFile } from './utils/signFile'
 
-
-const FileSignatureCryptoPro = ({
-  callback,
+export const FileSignatureCryptoPro = ({
+  callback = (_: any) => _,
   onChange = (_: any) => _,
-  onSelect = (_: any)=>_,
+  onSelect = (_: any) => _,
   file = null,
-  files = null,
+  files: Array = null,
   clear = false,
-  SelectComponent,
+  SelectComponent = undefined,
   ButtonComponent = (props: any) => (
     <button type="button" className="file-signature-crypto-pro__btn " {...props}>
       Подписать
     </button>
   ),
-  callbackError = (_: string) => _
-}: any) => {
-  const [thumbprint, setThumbprint] = useState(null);
-  const [sign, setSign] = useState(null);
-  const [fileNameSign, setFileNameSign] = useState(null);
+  callbackError = (_: any) => _,
+}) => {
+  const [thumbprint, setThumbprint] = useState(null)
+  const [sign, setSign] = useState(null)
+  const [fileNameSign, setFileNameSign] = useState(null)
   const selectCert = useGetCertificate(thumbprint)
   const cleanOut = () => {
-    setSign(null);
-    setFileNameSign(null);
-  };
+    setSign(null)
+    setFileNameSign(null)
+  }
 
   if (clear && (sign || fileNameSign)) {
-    cleanOut();
+    cleanOut()
   }
-  useEffect(()=>{
+  useEffect(() => {
     if (selectCert) {
       onSelect(selectCert)
     }
-  }, [selectCert])
+  }, [onSelect, selectCert])
 
   const signing = () => {
-    if (file) {
-      signFile({ thumbprint, file })
-        .then(({ fileName, blob }: any) => {
-          callback({ fileNameSign: fileName, sign: blob });
-          setSign(blob);
-          setFileNameSign(fileName);
-        })
-        .catch((e: any) => callbackError(String(e)));
-    }
-    if (files && files.length) {
-      const signs: SignInterface[] = [];
+    try {
+      if (file) {
+        signFile({ thumbprint, file })
+          .then(({ fileName, blob }) => {
+            callback({ fileNameSign: fileName, sign: blob })
+            setSign(blob)
+            setFileNameSign(fileName)
+          })
+          .catch((e) => callbackError(String(e)))
+      }
+      if (files && files.length) {
+        const signs: SignInterface[] = []
 
-      Promise.all(
-        Array.from(files).map(item => {
-          return signFile({ thumbprint, file: item }).then(({ fileName, blob }: any) => {
-            signs.push({ fileNameSign: fileName, sign: blob });
-          });
-        })
-      ).then(() => {
-        onChange(signs)
-        if(typeof callback === 'function'){
-          // eslint-disable-next-line no-console
-          console.info('callback is deprecated. use onChange')
-          callback(signs)
-        }
-      }).catch(e => callbackError(e));
+        Promise.all(
+          Array.from(files).map((item) => {
+            return signFile({ thumbprint, file: item }).then(({ fileName, blob }) => {
+              signs.push({ fileNameSign: fileName, sign: blob })
+            })
+          }),
+        )
+          .then(() => {
+            onChange(signs)
+            if (typeof callback === 'function') {
+              log.info('callback is deprecated. use onChange')
+              callback(signs)
+            }
+          })
+          .catch((e) => callbackError(String(e)))
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e) //?
     }
-  };
-  return (
-    !sign &&
-    (file || (files && files.length)) && (
-      <div className="file-signature-crypto-pro">
-        {<SelectCert {...{ setThumbprint, callbackError, Component: SelectComponent, value:thumbprint}} />}
-        {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={signing} />}
-      </div>
-    )
-  );
-};
+  }
 
-export default FileSignatureCryptoPro;
+  return !sign
+    ? (file || (files && files.length)) && (
+        <div className="file-signature-crypto-pro">
+          {
+            <SelectCert
+              {...{
+                setThumbprint,
+                callbackError,
+                Component: SelectComponent,
+                value: thumbprint,
+              }}
+            />
+          }
+          {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={signing} />}
+        </div>
+      )
+    : null
+}
