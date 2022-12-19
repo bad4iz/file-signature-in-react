@@ -7,6 +7,9 @@
 ![](https://img.shields.io/github/commit-activity/m/bad4iz/file-signature-in-react.svg)
 ![](https://img.shields.io/github/last-commit/bad4iz/file-signature-in-react.svg)
 
+
+[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github)](https://wallabyjs.com/oss/)
+
 [npm file-signature-in-react](https://www.npmjs.com/package/file-signature-in-react)
 
 Компонент на реакте для подписи файла Крипто Про с помощью плагина «КриптоПро ЭЦП Browser plug-in»
