@@ -1,10 +1,10 @@
 export interface SignInterface {
-    fileNameSign: string;
-    sign: Blob;
+  fileNameSign: string
+  sign: Blob
 }
 export interface FileInterface {
-    blob:Blob|null,
-    fileName: string|null
+  blob: Blob | null
+  fileName: string | null
 }
 
 /**
@@ -14,6 +14,6 @@ export interface FileInterface {
 export type ThumbprintType = string
 
 export interface SignFileInterface {
-    file: File,
-    thumbprint: ThumbprintType,
+  file: File | null
+  thumbprint: ThumbprintType | null
 }

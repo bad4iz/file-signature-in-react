@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import SelectCert from './SelectCert'
-import { SignInterface } from './types'
 import { useGetCertificate } from './utils/hooks'
 import { signFile } from './utils/signFile'
 
@@ -10,7 +9,7 @@ export const FileSignatureCryptoPro = ({
   onChange = (_: any) => _,
   onSelect = (_: any) => _,
   file = null,
-  files: Array = null,
+  files = null,
   clear = false,
   SelectComponent = undefined,
   ButtonComponent = (props: any) => (
@@ -50,7 +49,7 @@ export const FileSignatureCryptoPro = ({
           .catch((e) => callbackError(String(e)))
       }
       if (files && files.length) {
-        const signs: SignInterface[] = []
+        const signs = []
 
         Promise.all(
           Array.from(files).map((item) => {
@@ -62,7 +61,8 @@ export const FileSignatureCryptoPro = ({
           .then(() => {
             onChange(signs)
             if (typeof callback === 'function') {
-              log.info('callback is deprecated. use onChange')
+              // eslint-disable-next-line no-console
+              console.error('callback is deprecated. use onChange')
               callback(signs)
             }
           })
@@ -70,7 +70,7 @@ export const FileSignatureCryptoPro = ({
       }
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.log(e) //?
+      console.error(e)
     }
   }
 
@@ -92,3 +92,5 @@ export const FileSignatureCryptoPro = ({
       )
     : null
 }
+
+export default FileSignatureCryptoPro

@@ -1,21 +1,22 @@
-export const RawSelect = ({ value, options = [], onChange }: any) => (
+import React from 'react'
+
+export const RawSelect = ({ value, options = [], onChange }) => (
   <div className="file-signature-crypto-pro__raw-select">
-    <select className="select" onChange={(e)=>onChange(e.target.value)}>
-      {options.map((option: any) => {
-        const optionValue = option && option.value ? option.value : option;
-        const optionLabel = option && option.label ? option.label : option;
+    <select className="select" onChange={(e) => onChange(e.target.value)}>
+      {options.map((option) => {
+        const optionValue = option && option.value ? option.value : option
+        const optionLabel = option && option.label ? option.label : option
         return (
-            // @ts-ignore
           <option key={optionValue} value={optionValue} defaultValue={value === optionValue}>
             {optionLabel}
           </option>
-        );
+        )
       })}
     </select>
   </div>
-);
+)
 
-const Select = ({ label, ...other }: any) => {
+const Select = ({ label, ...other }) => {
   return (
     <label>
       <div className="file-signature-crypto-pro__select__container">
@@ -27,7 +28,7 @@ const Select = ({ label, ...other }: any) => {
         <RawSelect {...other} />
       </div>
     </label>
-  );
-};
+  )
+}
 
-export default Select;
+export default Select

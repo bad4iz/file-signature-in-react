@@ -11,7 +11,7 @@
  * const blob = b64toBlob(sign, contentType)
  */
 export function b64toBlob(b64Data: string, contentType = '', sliceSize = 512): Blob {
-  const byteCharacters = window.atob(b64Data)
+  const byteCharacters = atob(b64Data)
 
   const byteArrays = []
 
