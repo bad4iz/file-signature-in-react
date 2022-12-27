@@ -11,10 +11,7 @@ import { toBase64 } from './toBase64'
  * @param {SignFileInterface} params - Parameters.
  * @returns {Promise<FileInterface>}.
  */
-export const signFile = async ({
-  file = null,
-  thumbprint,
-}: SignFileInterface): Promise<FileInterface> => {
+export const signFile = async ({ file, thumbprint }: SignFileInterface): Promise<FileInterface> => {
   if (file) {
     const header = ';base64,'
     const sFileData = await toBase64(file)

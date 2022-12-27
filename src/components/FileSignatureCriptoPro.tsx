@@ -1,27 +1,45 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, FunctionComponent, useEffect, useState } from 'react'
 
 import SelectCert from './SelectCert'
+import { FileSignatureCryptoProInterface, SignInterface } from './types'
 import { useGetCertificate } from './utils/hooks'
 import { signFile } from './utils/signFile'
 
+const Button = (props: any) => (
+  <button type="button" className="file-signature-crypto-pro__btn " {...props}>
+    Подписать
+  </button>
+)
+
+/**
+ * Главный компонент подписи.
+ *
+ * @param {object} props - Properties.
+ * @param {Function} props.callback - A.
+ * @param {Function} props.onChange - A.
+ * @param {Function} props.onSelect - A.
+ * @param {File} props.file - A.
+ * @param {FileList} props.files - A.
+ * @param {boolean} props.clear - A.
+ * @param {FC} props.SelectComponent - A.
+ * @param {FC} props.ButtonComponent - A.
+ * @param {Function} props.callbackError - A.
+ * @returns {FunctionComponent}.
+ */
 export const FileSignatureCryptoPro = ({
-  callback = (_: any) => _,
-  onChange = (_: any) => _,
-  onSelect = (_: any) => _,
+  callback,
+  onChange,
+  onSelect,
   file = null,
   files = null,
   clear = false,
   SelectComponent = undefined,
-  ButtonComponent = (props: any) => (
-    <button type="button" className="file-signature-crypto-pro__btn " {...props}>
-      Подписать
-    </button>
-  ),
+  ButtonComponent = Button,
   callbackError = (_: any) => _,
-}) => {
+}: FileSignatureCryptoProInterface) => {
   const [thumbprint, setThumbprint] = useState(null)
-  const [sign, setSign] = useState(null)
-  const [fileNameSign, setFileNameSign] = useState(null)
+  const [sign, setSign] = useState<Blob | null>(null)
+  const [fileNameSign, setFileNameSign] = useState<string | null>(null)
   const selectCert = useGetCertificate(thumbprint)
   const cleanOut = () => {
     setSign(null)
@@ -47,10 +65,8 @@ export const FileSignatureCryptoPro = ({
             setFileNameSign(fileName)
           })
           .catch((e) => callbackError(String(e)))
-      }
-      if (files && files.length) {
-        const signs = []
-
+      } else if (files?.length) {
+        const signs: SignInterface[] = []
         Promise.all(
           Array.from(files).map((item) => {
             return signFile({ thumbprint, file: item }).then(({ fileName, blob }) => {
@@ -75,7 +91,7 @@ export const FileSignatureCryptoPro = ({
   }
 
   return !sign
-    ? (file || (files && files.length)) && (
+    ? (file || files?.length) && (
         <div className="file-signature-crypto-pro">
           {
             <SelectCert

@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react'
 
 import FileSignatureCryptoPro from './components'
-import {SignInterface} from './components/types'
+import { SignInterface } from './components/types'
+
 /**
- * Пример использования плагина
- *
+ * Пример использования плагина.
+ * App.
+ * @returns {JSX.Element}
  */
 function App() {
-  const [filesForSignature, setFilesForSignature] = useState(null)
+  const [filesForSignature, setFilesForSignature] = useState<FileList | null>(null)
   const [clear, setClear] = useState(false)
 
-  const fileInputHandler = ({ target: { files = [] } }: any) => {
-    if (filesForSignature && filesForSignature !== files[0]) {
+  const fileInputHandler = (event: Event) => {
+    const target = event.target as HTMLInputElement
+    const files = target.files as FileList
+
+    if (filesForSignature && filesForSignature[0] !== files[0]) {
       setClear(true)
     }
+
     setFilesForSignature(files)
   }
 
@@ -24,10 +30,10 @@ function App() {
   }, [clear])
 
   // eslint-disable-next-line no-console
-  const log = (message: string, e?:SignInterface) => console.log(message, e)
+  const log = (message: string, e?: SignInterface) => console.log(message, e)
 
-  const onChange = (e: SignInterface ) => {
-    log('callback подписи', e  )
+  const onChange = (e: SignInterface) => {
+    log('callback подписи', e)
     if (Array.isArray(e)) {
       e.forEach((item) => downloadAsFile(item.sign, item.fileNameSign))
     } else {
