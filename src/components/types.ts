@@ -24,13 +24,13 @@ export interface SignFileInterface {
 }
 
 export interface FileSignatureCryptoProInterface {
-  callback: (_: any) => _
-  onChange: (_: any) => _
-  onSelect: (_: any) => _
+  callback: (a: any) => void
+  onChange: (a: any) => void
+  onSelect: (a: any) => void
   file?: File | null
   files: FileList | null
   clear?: boolean
   SelectComponent?: FC
   ButtonComponent?: FC
-  callbackError: (_: any) => _
+  callbackError: (a: any) => void
 }
