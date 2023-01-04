@@ -57,6 +57,7 @@ function App() {
       </button>
       <FileSignatureCryptoPro
         {...{
+          callback: (_) => _,
           onChange,
           onSelect: () => log('callback выбора подписи'),
           files: filesForSignature,

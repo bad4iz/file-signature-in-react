@@ -1,12 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, ReactElement, useEffect, useState } from 'react'
 
 import Select from './Select'
+import { ISelectCertProps, ThumbprintType } from './types'
 import { useDoCertsList } from './utils/hooks'
 
-const SelectCert = ({ setThumbprint = (_) => _, Component = Select, callbackError, value }) => {
+/**
+ * Селекто выбора сертификата подписи.
+ *
+ * @param {ISelectCertProps} props - Props.
+ * @param {ISelectCertProps.setThumbprint} props.setThumbprint - Функция прокидывания подписи.
+ * @param {ISelectCertProps.Component} props.Component - Select для.
+ * @param {ISelectCertProps.callbackError} props.callbackError - Callback error - для перехвата ошибок.
+ * @param {ISelectCertProps.value}  props.value - Значения.
+ * @returns {FC}.
+ */
+const SelectCert: FC<ISelectCertProps> = ({
+  setThumbprint = () => {},
+  Component = Select,
+  callbackError = () => {},
+  value,
+}): ReactElement => {
   const [listCert, setListCert] = useState([{ value: 'подпись', label: 'подпись' }])
 
-  const [selectItem, setSelectItem] = useState(null)
+  const [selectItem, setSelectItem] = useState<ThumbprintType | null>(null)
 
   useDoCertsList(callbackError)
     .then(setListCert)
@@ -20,9 +36,8 @@ const SelectCert = ({ setThumbprint = (_) => _, Component = Select, callbackErro
     }
   }, [selectItem, listCert, setThumbprint])
 
-  const onChange = (value) => {
+  const onChange = (value: ThumbprintType) => {
     callbackError()
-
     setSelectItem(value)
   }
 

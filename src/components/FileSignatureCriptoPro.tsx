@@ -1,12 +1,12 @@
 import React, { FC, FunctionComponent, useEffect, useState } from 'react'
 
 import SelectCert from './SelectCert'
-import { FileSignatureCryptoProInterface, SignInterface } from './types'
+import { FileSignatureCryptoProInterface, IButtonComponentProps, SignInterface } from './types'
 import { useGetCertificate } from './utils/hooks'
 import { signFile } from './utils/signFile'
 
-const Button = (props: any) => (
-  <button type="button" className="file-signature-crypto-pro__btn " {...props}>
+const Button = ({ disabled, onClick }: IButtonComponentProps) => (
+  <button type="button" className="file-signature-crypto-pro__btn " {...{ disabled, onClick }}>
     Подписать
   </button>
 )
@@ -15,7 +15,7 @@ const Button = (props: any) => (
  * Главный компонент подписи.
  *
  * @param {object} props - Properties.
- * @param {Function} props.callback - A.
+ * @param {Function} [props.callback] - Deprecated: A.
  * @param {Function} props.onChange - A.
  * @param {Function} props.onSelect - A.
  * @param {File} props.file - A.
@@ -27,9 +27,15 @@ const Button = (props: any) => (
  * @returns {FunctionComponent}.
  */
 export const FileSignatureCryptoPro = ({
-  callback,
-  onChange,
-  onSelect,
+  /**
+   * @deprecated since version 2.0.0 use newName instead
+   */
+  callback = () => {},
+  onChange = () => {},
+  onSelect = () => {},
+  /**
+   * @deprecated since version 2.0.0 use newName instead
+   */
   file = null,
   files = null,
   clear = false,
@@ -60,7 +66,12 @@ export const FileSignatureCryptoPro = ({
       if (file) {
         signFile({ thumbprint, file })
           .then(({ fileName, blob }) => {
+            // eslint-disable-next-line no-console
+            console.error('callback is deprecated. use onChange')
             callback({ fileNameSign: fileName, sign: blob })
+            if (typeof onChange === 'function') {
+              onChange({ fileNameSign: fileName, sign: blob })
+            }
             setSign(blob)
             setFileNameSign(fileName)
           })
@@ -87,22 +98,21 @@ export const FileSignatureCryptoPro = ({
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e)
+      callbackError(String(e))
     }
   }
 
   return !sign
     ? (file || files?.length) && (
         <div className="file-signature-crypto-pro">
-          {
-            <SelectCert
-              {...{
-                setThumbprint,
-                callbackError,
-                Component: SelectComponent,
-                value: thumbprint,
-              }}
-            />
-          }
+          <SelectCert
+            {...{
+              setThumbprint,
+              callbackError,
+              Component: SelectComponent,
+              value: thumbprint,
+            }}
+          />
           {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={signing} />}
         </div>
       )

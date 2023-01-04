@@ -1,15 +1,15 @@
-import { extract } from 'core/uiKit/inputs/FileSignatureCriptoPro/utils/utils';
-import { useMemo } from 'react';
+import ccpa from 'crypto-pro-cadesplugin'
+import { useMemo } from 'react'
 
-import ccpa from '../ccpa';
+import { extract } from '../utils.js'
 
 /* eslint-disable */
 export const useDoCertsList = (callbackError) =>
   useMemo(async () => {
-    const certsApi = await ccpa();
-    const certsList = await certsApi.getCertsList();
+    const certsApi = await ccpa()
+    const certsList = await certsApi.getCertsList()
     return certsList.map(({ subjectInfo, thumbprint }) => ({
       value: thumbprint,
       label: extract(subjectInfo, 'CN='),
-    }));
-  }, []);
+    }))
+  }, [])
