@@ -7,9 +7,10 @@ node_js:
 #  directories:
 #    - node_modules
 
-#before_install:
-#  - sudo apt-get update
-#  - sudo apt-get remove nodejs
+before_install:
+  - sudo apt-get update
+  - nvm install --lts
+  - nvm alias default 16.15.1 # Which ever is the latest version being used in the project
 #  - nvm install 18.12.1
 
 #install:
