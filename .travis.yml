@@ -1,34 +1,31 @@
 language: node_js
 node_js:
-  - "stable"
+  - 16.9.1
 
-#cache:
-#  yarn: true
-#  directories:
-#    - node_modules
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
 before_install:
-  - sudo apt-get update && apt-get upgrade -y
-  - apt-get install libssl-dev
-  - nvm install --lts
-  - nvm alias default 16.15.1 # Which ever is the latest version being used in the project
-#  - nvm install 18.12.1
+  - sudo apt-get update
 
-#install:
-#  - yarn
-#
-#test:
-#  except:
-#    - branches
-#script: make test
-#before_deploy: "echo 'ready?'"
-#deploy:
-#  provider: npm
-#  email: $EMAIL_ADDRESS
-#  api_key: $AUTH_TOKEN
-#  on:
-#    branch: main
-#  only:
-#    - /^v\w*\-?\d\.\d\.\d/
-#  except:
-#    - branches
+
+install:
+  - yarn
+
+test:
+  except:
+    - branches
+script: make test
+before_deploy: "echo 'ready?'"
+deploy:
+  provider: npm
+  email: $EMAIL_ADDRESS
+  api_key: $AUTH_TOKEN
+  on:
+    branch: main
+  only:
+    - /^v\w*\-?\d\.\d\.\d/
+  except:
+    - branches
