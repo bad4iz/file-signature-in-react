@@ -11,6 +11,10 @@ cache:
 install:
   - yarn
 
+test:
+  except:
+    - branches
+script: make test
 before_deploy: "echo 'ready?'"
 deploy:
   provider: npm
