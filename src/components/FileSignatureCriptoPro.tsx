@@ -1,7 +1,7 @@
 import React, { FC, FunctionComponent, useEffect, useState } from 'react'
 
 import SelectCert from './SelectCert'
-import { FileSignatureCryptoProInterface, IButtonComponentProps, SignInterface } from './types'
+import { IButtonComponentProps, ISelectComponentProps, SignInterface } from './types'
 import { useGetCertificate } from './utils/hooks'
 import { signFile } from './utils/signFile'
 
@@ -10,6 +10,25 @@ const Button = ({ disabled, onClick }: IButtonComponentProps) => (
     Подписать
   </button>
 )
+
+export type FileSignatureCryptoProps = {
+  /**
+   * @deprecated since version 3.0.0
+   * @param {SignInterface | SignInterface[]} callback
+   */
+  callback?: (a: SignInterface | SignInterface[]) => void
+  onChange: (a: SignInterface[] | SignInterface) => void
+  onSelect: (a: any) => void
+  /**
+   * @deprecated since version 3.0.0
+   */
+  file?: File | null
+  files: FileList | null
+  clear?: boolean
+  SelectComponent?: FC<ISelectComponentProps>
+  ButtonComponent?: FC<IButtonComponentProps>
+  callbackError: (a: any) => void
+}
 
 /**
  * Главный компонент подписи.
@@ -27,22 +46,16 @@ const Button = ({ disabled, onClick }: IButtonComponentProps) => (
  * @returns {FunctionComponent}.
  */
 export const FileSignatureCryptoPro = ({
-  /**
-   * @deprecated since version 2.0.0 use newName instead
-   */
-  callback = () => {},
+  callback,
   onChange = () => {},
   onSelect = () => {},
-  /**
-   * @deprecated since version 2.0.0 use newName instead
-   */
   file = null,
   files = null,
   clear = false,
   SelectComponent = undefined,
   ButtonComponent = Button,
   callbackError = (_: any) => _,
-}: FileSignatureCryptoProInterface) => {
+}: FileSignatureCryptoProps) => {
   const [thumbprint, setThumbprint] = useState(null)
   const [sign, setSign] = useState<Blob | null>(null)
   const [fileNameSign, setFileNameSign] = useState<string | null>(null)
@@ -66,9 +79,11 @@ export const FileSignatureCryptoPro = ({
       if (file) {
         signFile({ thumbprint, file })
           .then(({ fileName, blob }) => {
-            // eslint-disable-next-line no-console
-            console.error('callback is deprecated. use onChange')
-            callback({ fileNameSign: fileName, sign: blob })
+            if (typeof callback === 'function') {
+              // eslint-disable-next-line no-console
+              console.error('callback is deprecated. use onChange')
+              callback({ fileNameSign: fileName, sign: blob })
+            }
             if (typeof onChange === 'function') {
               onChange({ fileNameSign: fileName, sign: blob })
             }

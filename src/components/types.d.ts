@@ -1,5 +1,3 @@
-import { FC, ReactElement } from 'react'
-
 export interface SignInterface {
   fileNameSign: string | null
   sign: Blob | null
@@ -22,18 +20,6 @@ export type ThumbprintType = string
 export interface SignFileInterface {
   file: File | null
   thumbprint: ThumbprintType | null
-}
-
-export interface FileSignatureCryptoProInterface {
-  callback: (a: SignInterface | SignInterface[]) => void
-  onChange: (a: SignInterface[] | SignInterface) => void
-  onSelect: (a: any) => void
-  file?: File | null
-  files: FileList | null
-  clear?: boolean
-  SelectComponent?: FC<ISelectComponentProps>
-  ButtonComponent?: FC<IButtonComponentProps>
-  callbackError: (a: any) => void
 }
 
 /**
@@ -122,7 +108,8 @@ export interface ISelectCertProps {
 //
 // const select: Select<TState> = (state, field) => state[field]
 //
-// const user1: IUser = select(state, 'user')
+// const user1: IUser = select(state, 'userss')
+
 // const product1: IProduct = select(state, 'product')
 // const cart: IProduct = select(state, 'cartProduct')
 //
