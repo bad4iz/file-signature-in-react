@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react'
 
 import Select from './Select'
-import { ISelectCertProps, ThumbprintType } from './types'
+import { ISelectCertProps, ThumbprintType, ValueSelectI } from './types'
 import { useDoCertsList } from './utils/hooks'
 
 /**
@@ -20,7 +20,7 @@ const SelectCert: FC<ISelectCertProps> = ({
   callbackError = () => {},
   value,
 }): ReactElement => {
-  const [listCert, setListCert] = useState([{ value: 'подпись', label: 'подпись' }])
+  const [listCert, setListCert] = useState<ValueSelectI[]>([{ value: 'подпись', label: 'подпись' }])
 
   const [selectItem, setSelectItem] = useState<ThumbprintType | null>(null)
 

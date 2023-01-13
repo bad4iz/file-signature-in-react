@@ -51,6 +51,11 @@ export interface ISelectCertProps {
   callbackError?: (error: string | void | undefined) => void
   value: ThumbprintType | null
 }
+export interface ValueSelectI {
+  value: string
+  label: string
+}
+
 //
 // type T1 = {
 //   x: number
