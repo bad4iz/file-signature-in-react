@@ -118,21 +118,25 @@ export const FileSignatureCryptoPro = ({
     }
   }
 
-  return !sign
-    ? (file || files?.length) && (
-        <div className="file-signature-crypto-pro">
-          <SelectCert
-            {...{
-              setThumbprint,
-              callbackError,
-              Component: SelectComponent,
-              value: thumbprint,
-            }}
-          />
-          {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={signing} />}
-        </div>
-      )
-    : null
+  return !sign ? (
+    file || files?.length ? (
+      <div className="file-signature-crypto-pro">
+        <SelectCert
+          {...{
+            setThumbprint,
+            callbackError,
+            Component: SelectComponent,
+            value: thumbprint,
+          }}
+        />
+        {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={signing} />}
+      </div>
+    ) : (
+      <div></div>
+    )
+  ) : (
+    <div></div>
+  )
 }
 
 export default FileSignatureCryptoPro

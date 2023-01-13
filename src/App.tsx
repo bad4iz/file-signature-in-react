@@ -12,7 +12,8 @@ function App() {
   const [filesForSignature, setFilesForSignature] = useState<FileList | null>(null)
   const [clear, setClear] = useState(false)
 
-  const fileInputHandler = (event: Event) => {
+  // todo fix any
+  const fileInputHandler = (event: any) => {
     const target = event.target as HTMLInputElement
     const files = target.files as FileList
 
@@ -30,14 +31,20 @@ function App() {
   }, [clear])
 
   // eslint-disable-next-line no-console
-  const log = (message: string, e?: SignInterface) => console.log(message, e)
+  const log = (message: string, e?: SignInterface[] | SignInterface) => console.log(message, e)
 
-  const onChange = (e: SignInterface) => {
+  const onChange = (e: SignInterface | SignInterface[]) => {
     log('callback подписи', e)
     if (Array.isArray(e)) {
-      e.forEach((item) => downloadAsFile(item.sign, item.fileNameSign))
+      e.filter((item) => item.sign && item.fileNameSign).forEach((item) => {
+        if (item.sign && item.fileNameSign) {
+          downloadAsFile(item.sign, item.fileNameSign)
+        }
+      })
     } else {
-      downloadAsFile(e.sign, e.fileNameSign)
+      if (e.sign && e.fileNameSign) {
+        downloadAsFile(e.sign, e.fileNameSign)
+      }
     }
   }
 
@@ -56,14 +63,12 @@ function App() {
         Удалить подпись
       </button>
       <FileSignatureCryptoPro
-        {...{
-          callback: (_) => _,
-          onChange,
-          onSelect: () => log('callback выбора подписи'),
-          files: filesForSignature,
-          clear,
-          callbackError: () => log('callback ошибки'),
-        }}
+        callback={(_) => _}
+        onChange={onChange}
+        onSelect={(sign) => log('callback выбора подписи', sign)}
+        files={filesForSignature}
+        clear={clear}
+        callbackError={(err) => log('callback ошибки', err)}
       />
     </div>
   )
