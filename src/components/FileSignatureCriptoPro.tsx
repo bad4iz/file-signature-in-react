@@ -21,6 +21,7 @@ export type FileSignatureCryptoProps = {
   onSelect: (a: any) => void
   /**
    * @deprecated since version 3.0.0
+   * @type {File | null} - Single File
    */
   file?: File | null
   files: FileList | null
