@@ -1,19 +1,26 @@
 import { useEffect, useState } from 'react'
 
 import FileSignatureCryptoPro from './components'
-import {SignInterface} from './components/types'
+import { SignInterface } from './components/types'
+
 /**
- * Пример использования плагина
- *
+ * Пример использования плагина.
+ * App.
+ * @returns {JSX.Element}
  */
 function App() {
-  const [filesForSignature, setFilesForSignature] = useState(null)
+  const [filesForSignature, setFilesForSignature] = useState<FileList | null>(null)
   const [clear, setClear] = useState(false)
 
-  const fileInputHandler = ({ target: { files = [] } }: any) => {
-    if (filesForSignature && filesForSignature !== files[0]) {
+  // todo fix any
+  const fileInputHandler = (event: any) => {
+    const target = event.target as HTMLInputElement
+    const files = target.files as FileList
+
+    if (filesForSignature && filesForSignature[0] !== files[0]) {
       setClear(true)
     }
+
     setFilesForSignature(files)
   }
 
@@ -24,14 +31,20 @@ function App() {
   }, [clear])
 
   // eslint-disable-next-line no-console
-  const log = (message: string, e?:SignInterface) => console.log(message, e)
+  const log = (message: string, e?: SignInterface[] | SignInterface) => console.log(message, e)
 
-  const onChange = (e: SignInterface ) => {
-    log('callback подписи', e  )
+  const onChange = (e: SignInterface | SignInterface[]) => {
+    log('callback подписи', e)
     if (Array.isArray(e)) {
-      e.forEach((item) => downloadAsFile(item.sign, item.fileNameSign))
+      e.filter((item) => item.sign && item.fileNameSign).forEach((item) => {
+        if (item.sign && item.fileNameSign) {
+          downloadAsFile(item.sign, item.fileNameSign)
+        }
+      })
     } else {
-      downloadAsFile(e.sign, e.fileNameSign)
+      if (e.sign && e.fileNameSign) {
+        downloadAsFile(e.sign, e.fileNameSign)
+      }
     }
   }
 
@@ -50,13 +63,12 @@ function App() {
         Удалить подпись
       </button>
       <FileSignatureCryptoPro
-        {...{
-          onChange,
-          onSelect: () => log('callback выбора подписи'),
-          files: filesForSignature,
-          clear,
-          callbackError: () => log('callback ошибки'),
-        }}
+        callback={(_) => _}
+        onChange={onChange}
+        onSelect={(sign) => log('callback выбора подписи', sign)}
+        files={filesForSignature}
+        clear={clear}
+        callbackError={(err) => log('callback ошибки', err)}
       />
     </div>
   )

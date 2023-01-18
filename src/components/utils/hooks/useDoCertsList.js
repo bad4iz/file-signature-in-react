@@ -1,14 +1,13 @@
-// @ts-ignore
 import ccpa from 'crypto-pro-cadesplugin'
 import { useMemo } from 'react'
 
-import { extract } from '../extract'
+import { extract } from '../utils.js'
 
-export const useDoCertsList = () =>
+/* eslint-disable */
+export const useDoCertsList = (callbackError) =>
   useMemo(async () => {
     const certsApi = await ccpa()
     const certsList = await certsApi.getCertsList()
-    // @ts-ignore
     return certsList.map(({ subjectInfo, thumbprint }) => ({
       value: thumbprint,
       label: extract(subjectInfo, 'CN='),

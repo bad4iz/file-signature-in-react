@@ -1,15 +1,23 @@
 language: node_js
-node_js: '14.17.1'
+node_js:
+  - 16.9.1
 
 cache:
   yarn: true
   directories:
     - node_modules
 
+before_install:
+  - sudo apt-get update
+
 
 install:
-  - yarn --frozen-lockfile --non-interactive
+  - yarn
 
+test:
+  except:
+    - branches
+script: make test
 before_deploy: "echo 'ready?'"
 deploy:
   provider: npm
