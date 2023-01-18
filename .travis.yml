@@ -1,5 +1,5 @@
 language: node_js
-node_js: '14.17.1'
+node_js: '18.13.0'
 
 cache:
   yarn: true
@@ -11,13 +11,13 @@ install:
   - yarn --frozen-lockfile --non-interactive
 
 before_deploy: "echo 'ready?'"
-deploy:
-  provider: npm
-  email: $EMAIL_ADDRESS
-  api_key: $AUTH_TOKEN
-  on:
-    branch: main
-  only:
-    - /^v\w*\-?\d\.\d\.\d/
-  except:
-    - branches
+#deploy:
+#  provider: npm
+#  email: $EMAIL_ADDRESS
+#  api_key: $AUTH_TOKEN
+#  on:
+#    branch: main
+#  only:
+#    - /^v\w*\-?\d\.\d\.\d/
+#  except:
+#    - branches
