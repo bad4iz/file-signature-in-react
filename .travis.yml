@@ -8,7 +8,7 @@ cache:
 
 
 install:
-  - yarn --frozen-lockfile --non-interactive
+  - npm install
 
 before_deploy: "echo 'ready?'"
 #deploy:
