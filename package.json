@@ -11,7 +11,8 @@
     "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
     "lint:fix": "eslint --fix 'src/**/*.{jsx,ts,tsx}'",
     "format": "prettier --write src//**/*.{ts,tsx,css} --config ./.prettierrc",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "echo \"test \" "
   },
   "_husky": {
     "hooks": {
