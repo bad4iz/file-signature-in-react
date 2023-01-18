@@ -66,8 +66,8 @@
     "vite-tsconfig-paths": "4.0.3"
   },
   "peerDependencies": {
-    "react": "16.8.0 || >=17.x",
-    "react-dom": "16.8.0 || >=17.x"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "keywords": [
     "react-component",
