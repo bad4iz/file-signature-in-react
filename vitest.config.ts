@@ -6,6 +6,8 @@ export default defineConfig({
     coverage: {
       // you can include other reporters, but 'json-summary' is required, json is recommended
       reporter: ['html', 'text', 'json-summary', 'json'],
+      provider: 'istanbul', // or 'c8'
+      all: true,
     },
   },
 })
