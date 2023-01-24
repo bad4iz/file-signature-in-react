@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "coverage": "vitest run --coverage",
+    "test": "vitest",
     "dev": "vite",
     "format": "prettier --write src//**/*.{ts,tsx,css} --config ./.prettierrc",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
