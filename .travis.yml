@@ -10,7 +10,11 @@ cache:
 install:
   - npm install
 
-before_deploy: "echo 'ready?'"
+before_deploy:
+  - "echo 'ready?'"
+  - npm run coverage
+
+
 #deploy:
 #  provider: npm
 #  email: $EMAIL_ADDRESS
