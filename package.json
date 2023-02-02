@@ -2,7 +2,7 @@
   "name": "file-signature-in-react",
   "private": false,
   "version": "1.1.30",
-  "description": "Компонент на реакте для подписи файла ЭЦП",
+  "description": "React Компонент для подписи файла ЭЦП",
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
