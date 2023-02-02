@@ -48,7 +48,7 @@
     "@typescript-eslint/eslint-plugin": "5.46.1",
     "@typescript-eslint/parser": "5.46.1",
     "@vitejs/plugin-react": "3.0.0",
-    "@vitest/coverage-c8": "^0.28.1",
+    "@vitest/coverage-c8": "0.28.1",
     "@vitest/ui": "0.28.1",
     "eslint": "8.30.0",
     "eslint-config-prettier": "8.5.0",
@@ -68,7 +68,7 @@
     "vite-plugin-dts": "1.7.1",
     "vite-plugin-linter": "2.0.0",
     "vite-tsconfig-paths": "4.0.3",
-    "vitest": "^0.28.1"
+    "vitest": "0.28.1"
   },
   "peerDependencies": {
     "react": "18.2.0",
