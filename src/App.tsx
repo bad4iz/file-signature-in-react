@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import FileSignatureCryptoPro from './components'
-import { SignInterface } from './components/types'
+import FileSignatureCryptoPro from './component'
+import { SignInterface } from './component/types'
 
 /**
  * Пример использования плагина.
