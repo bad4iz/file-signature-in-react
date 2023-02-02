@@ -1,24 +1,21 @@
 language: node_js
-node_js:
-  - 16.9.1
+node_js: '16.15.1'
 
 cache:
   yarn: true
   directories:
     - node_modules
 
-before_install:
-  - sudo apt-get update
-
 
 install:
-  - yarn
+  - npm install
+script: npm test
+after_success: npm run coverage
 
-test:
-  except:
-    - branches
-script: make test
-before_deploy: "echo 'ready?'"
+before_deploy:
+  - "echo 'ready?'"
+
+
 deploy:
   provider: npm
   email: $EMAIL_ADDRESS
