@@ -5,16 +5,16 @@ React Компонент для подписи файла ЭЦП, с помощ�
 ![](https://img.shields.io/npm/dt/file-signature-in-react.svg)
 ![](https://img.shields.io/github/commit-activity/m/bad4iz/file-signature-in-react.svg)
 ![](https://img.shields.io/github/last-commit/bad4iz/file-signature-in-react.svg)
+[![Wallaby.js](https://img.shields.io/badge/wallaby.js-configured-green.svg)](https://wallabyjs.com)   
 
 #### main-branch
-![master test](https://github.com/bad4iz/file-signature-in-react/actions/workflows/action.yml/badge.svg?branch=master)
-![master build](https://github.com/bad4iz/file-signature-in-react/actions/workflows/test-build.yml/badge.svg?branch=master)
+![master test](https://github.com/bad4iz/file-signature-in-react/actions/workflows/action.yml/badge.svg?branch=main)
+![master build](https://github.com/bad4iz/file-signature-in-react/actions/workflows/test-build.yml/badge.svg?branch=main)
 #### develop-branch
 ![develop build](https://github.com/bad4iz/file-signature-in-react/actions/workflows/test-build.yml/badge.svg?branch=develop)
 ![develop test](https://github.com/bad4iz/file-signature-in-react/actions/workflows/action.yml/badge.svg?branch=develop)
 
 [//]: # ([![Wallaby.js]&#40;https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github&#41;]&#40;https://wallabyjs.com/oss/&#41;)
-[![Wallaby.js](https://img.shields.io/badge/wallaby.js-configured-green.svg)](https://wallabyjs.com)   
 
 [npm file-signature-in-react](https://www.npmjs.com/package/file-signature-in-react)
 
