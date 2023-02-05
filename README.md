@@ -1,5 +1,8 @@
 # File signature
+React Компонент для подписи файла ЭЦП, с помощью плагина «КриптоПро ЭЦП Browser plug-in»
 
+
+[![Build Status](https://app.travis-ci.com/bad4iz/file-signature-in-react.svg?branch=main)](https://app.travis-ci.com/bad4iz/file-signature-in-react)
 ![](https://travis-ci.com/bad4iz/file-signature-in-react.svg?branch=main)
 ![](https://img.shields.io/npm/v/file-signature-in-react.svg)
 ![](https://img.shields.io/npm/dt/file-signature-in-react.svg)
