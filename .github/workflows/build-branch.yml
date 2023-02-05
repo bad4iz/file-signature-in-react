@@ -1,7 +1,10 @@
-name: "Build"
+name: "Build Branch"
 
 on:
-  pull_request:
+  push:
+    branches:
+      - develop
+      - master
 
 jobs:
   build:
