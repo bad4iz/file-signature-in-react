@@ -14,7 +14,6 @@ after_success: npm run coverage
 
 before_deploy:
   - "echo 'ready?'"
-  - npm install
   - npm build
 
 
