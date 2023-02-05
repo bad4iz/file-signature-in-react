@@ -1,6 +1,10 @@
-name: "Build"
+name: "Build Branch"
 
-on: [push]
+on:
+  push:
+    branches:
+      - develop
+      - main
 
 jobs:
   build:
