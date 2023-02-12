@@ -1,3 +1,2 @@
-export * from './useGetCertificate'
-
-export * from './useDoCertsList'
+export * from './useDoCertsList';
+export * from './useGetCertificate';
