@@ -1,35 +1,43 @@
-import React, { FC, FunctionComponent, useEffect, useState } from 'react'
-
-import SelectCert from './SelectCert'
-import { IButtonComponentProps, ISelectComponentProps, SignInterface } from './types'
-import { useGetCertificate } from './utils/hooks'
-import { signFile } from './utils/signFile'
+/* eslint-disable */
+import React, { FC, FunctionComponent, useEffect, useState } from 'react';
+import SelectCert from './SelectCert';
+import {
+  IButtonComponentProps,
+  ISelectComponentProps,
+  SignInterface,
+} from './types';
+import { useGetCertificate } from './utils/hooks';
+import { signFile } from './utils/signFile';
 
 const Button = ({ disabled, onClick }: IButtonComponentProps) => (
-  <button type="button" className="file-signature-crypto-pro__btn " {...{ disabled, onClick }}>
+  <button
+    type="button"
+    className="file-signature-crypto-pro__btn "
+    {...{ disabled, onClick }}
+  >
     Подписать
   </button>
-)
+);
 
 export type FileSignatureCryptoProps = {
   /**
    * @deprecated since version 3.0.0
    * @param {SignInterface | SignInterface[]} callback
    */
-  callback?: (a: SignInterface | SignInterface[]) => void
-  onChange: (a: SignInterface[] | SignInterface) => void
-  onSelect: (a: any) => void
+  callback?: (a: SignInterface | SignInterface[]) => void;
+  onChange: (a: SignInterface[] | SignInterface) => void;
+  onSelect: (a: any) => void;
   /**
    * @deprecated since version 3.0.0
    * @type {File | null} - Single File
    */
-  file?: File | null
-  files: FileList | null
-  clear?: boolean
-  SelectComponent?: FC<ISelectComponentProps>
-  ButtonComponent?: FC<IButtonComponentProps>
-  callbackError: (a: any) => void
-}
+  file?: File | null;
+  files: FileList | null;
+  clear?: boolean;
+  SelectComponent?: FC<ISelectComponentProps>;
+  ButtonComponent?: FC<IButtonComponentProps>;
+  callbackError: (a: any) => void;
+};
 
 /**
  * Главный компонент подписи.
@@ -57,23 +65,23 @@ export const FileSignatureCryptoPro = ({
   ButtonComponent = Button,
   callbackError = (_: any) => _,
 }: FileSignatureCryptoProps) => {
-  const [thumbprint, setThumbprint] = useState(null)
-  const [sign, setSign] = useState<Blob | null>(null)
-  const [fileNameSign, setFileNameSign] = useState<string | null>(null)
-  const selectCert = useGetCertificate(thumbprint)
+  const [thumbprint, setThumbprint] = useState(null);
+  const [sign, setSign] = useState<Blob | null>(null);
+  const [fileNameSign, setFileNameSign] = useState<string | null>(null);
+  const selectCert = useGetCertificate(thumbprint);
   const cleanOut = () => {
-    setSign(null)
-    setFileNameSign(null)
-  }
+    setSign(null);
+    setFileNameSign(null);
+  };
 
   if (clear && (sign || fileNameSign)) {
-    cleanOut()
+    cleanOut();
   }
   useEffect(() => {
     if (selectCert) {
-      onSelect(selectCert)
+      onSelect(selectCert);
     }
-  }, [onSelect, selectCert])
+  }, [onSelect, selectCert]);
 
   const signing = () => {
     try {
@@ -82,41 +90,43 @@ export const FileSignatureCryptoPro = ({
           .then(({ fileName, blob }) => {
             if (typeof callback === 'function') {
               // eslint-disable-next-line no-console
-              console.error('callback is deprecated. use onChange')
-              callback({ fileNameSign: fileName, sign: blob })
+              console.error('callback is deprecated. use onChange');
+              callback({ fileNameSign: fileName, sign: blob });
             }
             if (typeof onChange === 'function') {
-              onChange({ fileNameSign: fileName, sign: blob })
+              onChange({ fileNameSign: fileName, sign: blob });
             }
-            setSign(blob)
-            setFileNameSign(fileName)
+            setSign(blob);
+            setFileNameSign(fileName);
           })
-          .catch((e) => callbackError(String(e)))
+          .catch((e) => callbackError(String(e)));
       } else if (files?.length) {
-        const signs: SignInterface[] = []
+        const signs: SignInterface[] = [];
         Promise.all(
           Array.from(files).map((item) => {
-            return signFile({ thumbprint, file: item }).then(({ fileName, blob }) => {
-              signs.push({ fileNameSign: fileName, sign: blob })
-            })
+            return signFile({ thumbprint, file: item }).then(
+              ({ fileName, blob }) => {
+                signs.push({ fileNameSign: fileName, sign: blob });
+              },
+            );
           }),
         )
           .then(() => {
-            onChange(signs)
+            onChange(signs);
             if (typeof callback === 'function') {
               // eslint-disable-next-line no-console
-              console.error('callback is deprecated. use onChange')
-              callback(signs)
+              console.error('callback is deprecated. use onChange');
+              callback(signs);
             }
           })
-          .catch((e) => callbackError(String(e)))
+          .catch((e) => callbackError(String(e)));
       }
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.error(e)
-      callbackError(String(e))
+      console.error(e);
+      callbackError(String(e));
     }
-  }
+  };
 
   return !sign ? (
     file || files?.length ? (
@@ -129,14 +139,16 @@ export const FileSignatureCryptoPro = ({
             value: thumbprint,
           }}
         />
-        {thumbprint && <ButtonComponent disabled={!thumbprint} onClick={signing} />}
+        {thumbprint && (
+          <ButtonComponent disabled={!thumbprint} onClick={signing} />
+        )}
       </div>
     ) : (
       <div></div>
     )
   ) : (
     <div></div>
-  )
-}
+  );
+};
 
-export default FileSignatureCryptoPro
+export default FileSignatureCryptoPro;
