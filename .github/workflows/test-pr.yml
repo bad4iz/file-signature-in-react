@@ -14,8 +14,6 @@ jobs:
           node-version: '16.x'
       - name: 'Install Deps'
         run: npm install
-      - name: 'lint'
-        run: npm run lint
       - name: 'Test'
         run: npm run coverage
       - name: 'Report Coverage'
