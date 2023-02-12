@@ -17,7 +17,7 @@ jobs:
       - name: 'lint'
         run: npm run lint
       - name: 'Test'
-        run: npx vitest --coverage
+        run: npm run coverage
       - name: 'Report Coverage'
         if: always() # Also generate the report if tests are failing
         uses:  davelosert/vitest-coverage-report-action@v1
