@@ -1,11 +1,17 @@
-
-name: 'Test Pull Request'
+name: 'Test'
 on:
   pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    permissions:
+      # Required to checkout the code
+      contents: read
+      # Required to put a comment into the pull-request
+      pull-requests: write
+
     steps:
       - uses: actions/checkout@v2
       - name: 'Install Node'
