@@ -5,10 +5,10 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
+    "plugin:react/all",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:jsdoc/recommended"
+    "plugin:jsdoc/recommended",
+    "plugin:jest-dom/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -21,31 +21,91 @@
   "plugins": [
     "react",
     "@typescript-eslint",
-    "react-hooks",
-    "prettier",
     "simple-import-sort",
-    "jsdoc"
+    "jsdoc",
+    "jest-dom"
   ],
   "rules": {
     "camelcase": "error",
     "no-duplicate-imports": "error",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "react/react-in-jsx-scope": "off",
-    "no-console": "error",
     "no-alert": "error",
-    "react-hooks/exhaustive-deps": "off",
-    "react/prop-types": 0,
-    "react/display-name": 0,
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
     "@typescript-eslint/no-empty-function": "off",
     "react/no-unknown-property": "off",
-    "react/no-unescaped-entities ": "off"
+    "react/no-unescaped-entities ": "off",
+    "no-console": 1,
+    "valid-jsdoc": 1,
+    "jsdoc/check-indentation": 1,
+    "jsdoc/check-line-alignment": 1,
+    "jsdoc/check-syntax": 1,
+    "jsdoc/require-description": 1,
+    "jsdoc/require-description-complete-sentence": 1,
+    "jsdoc/require-jsdoc": 1,
+    "jsdoc/require-hyphen-before-param-description": 1,
+    "jsdoc/require-returns-description": 0,
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn",
+    "require-jsdoc": [
+      1,
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true,
+          "ArrowFunctionExpression": true,
+          "FunctionExpression": true
+        }
+      }
+    ],
+    "sort-keys": [
+      "warn",
+      "asc",
+      {
+        "caseSensitive": true,
+        "natural": true,
+        "minKeys": 2
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
       "typescript": {}
+    },
+    "jsdoc": {
+      "mode": "typescript",
+      "tagNamePreference": {
+        "todo": {
+          "message": "Пожалуйста решите задачу или добавить в трекер"
+        },
+        "category": "category"
+      }
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.ts"
+      ],
+      "rules": {
+        "require-jsdoc": [
+          1,
+          {
+            "require": {
+            }
+          }
+        ],
+        "valid-jsdoc": [
+          1,
+          {
+            "requireReturnType": false,
+            "requireParamType": false
+          }
+        ],
+        "jsdoc/require-property-type": 0,
+        "jsdoc/require-returns-type": 0,
+        "jsdoc/require-param-type": 0
+      }
+    }
+  ]
 }

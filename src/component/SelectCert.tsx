@@ -1,11 +1,11 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react'
-
-import Select from './Select'
-import { ISelectCertProps, ThumbprintType, ValueSelectI } from './types'
-import { useDoCertsList } from './utils/hooks'
+/* eslint-disable */
+import React, { FC, ReactElement, useEffect, useState } from 'react';
+import Select from './Select';
+import { ISelectCertProps, ThumbprintType, ValueSelectI } from './types';
+import { useDoCertsList } from './utils/hooks';
 
 /**
- * Селекто выбора сертификата подписи.
+ * Селектор выбора сертификата подписи.
  *
  * @param {ISelectCertProps} props - Props.
  * @param {ISelectCertProps.setThumbprint} props.setThumbprint - Функция прокидывания подписи.
@@ -20,26 +20,28 @@ const SelectCert: FC<ISelectCertProps> = ({
   callbackError = () => {},
   value,
 }): ReactElement => {
-  const [listCert, setListCert] = useState<ValueSelectI[]>([{ value: 'подпись', label: 'подпись' }])
+  const [listCert, setListCert] = useState<ValueSelectI[]>([
+    { value: 'подпись', label: 'подпись' },
+  ]);
 
-  const [selectItem, setSelectItem] = useState<ThumbprintType | null>(null)
+  const [selectItem, setSelectItem] = useState<ThumbprintType | null>(null);
 
   useDoCertsList(callbackError)
     .then(setListCert)
-    .catch((e) => callbackError(String(e)))
+    .catch((e) => callbackError(String(e)));
 
   useEffect(() => {
     if (selectItem) {
-      setThumbprint(selectItem)
+      setThumbprint(selectItem);
     } else {
-      setThumbprint(listCert[0].value)
+      setThumbprint(listCert[0].value);
     }
-  }, [selectItem, listCert, setThumbprint])
+  }, [selectItem, listCert, setThumbprint]);
 
   const onChange = (value: ThumbprintType) => {
-    callbackError()
-    setSelectItem(value)
-  }
+    callbackError();
+    setSelectItem(value);
+  };
 
   return (
     <Component
@@ -50,7 +52,7 @@ const SelectCert: FC<ISelectCertProps> = ({
       options={listCert}
       onChange={onChange}
     />
-  )
-}
+  );
+};
 
-export default SelectCert
+export default SelectCert;

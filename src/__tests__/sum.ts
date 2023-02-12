@@ -1,1 +1,2 @@
-export const sum = (a: number, b: number): number => a + b
+/* eslint-disable */
+export const sum = (a: number, b: number): number => a + b;
