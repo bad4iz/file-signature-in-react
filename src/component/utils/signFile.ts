@@ -1,7 +1,6 @@
-/* eslint-disable */
 // @ts-ignore
 import ccpa from 'crypto-pro-cadesplugin';
-/* eslint-disable */
+
 import { FileInterface, SignFileInterface } from '../types';
 import { b64toBlob } from './b64toBlob';
 import { toBase64 } from './toBase64';

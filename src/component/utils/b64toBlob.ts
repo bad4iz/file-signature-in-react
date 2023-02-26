@@ -1,4 +1,3 @@
-/* eslint-disable */
 /**
  * Конвертирует base64 в Blob object.
  *
