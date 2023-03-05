@@ -1,4 +1,4 @@
-import { checkQuotes } from './utils';
+import { checkQuotes } from './checkQuotes';
 
 export const extract = (from: string, what: string) => {
   let certName = '';
