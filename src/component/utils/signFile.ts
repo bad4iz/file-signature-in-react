@@ -20,10 +20,11 @@ export const signFile = async ({
   if (file) {
     const header = ';base64,';
     const sFileData = await toBase64(file);
-    const sBase64Data = sFileData?.substr(
+
+    const sBase64Data = sFileData?.slice(
       sFileData.indexOf(header) + header.length,
     );
-    const type = sFileData?.substr(0, sFileData.indexOf(header));
+    const type = sFileData?.slice(0, sFileData.indexOf(header));
 
     const certsApi = await ccpa();
 
