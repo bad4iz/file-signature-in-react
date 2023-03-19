@@ -1,12 +1,11 @@
 /**
- * Написать нормальнную jsdoc.
- *
- * @param str - String to.
- * @returns Ret.
+ * Проверяет, является ли количество кавычек в строке четным числом.
+ * 
+ * @param str - проверяемая строка.
+ * @returns true, если количество кавычек в строке четно, иначе - false.
  */
 export const checkQuotes = (str: string) => {
-  let result = 0;
-
-  for (let i = 0; i < str.length; i++) if (str[i] === '"') result++;
+  const result = str.split('').filter(char => char === '"').length;
   return !(result % 2);
 };
+
