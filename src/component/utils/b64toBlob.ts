@@ -15,6 +15,10 @@ export function b64toBlob(
   contentType = '',
   sliceSize = 512,
 ): Blob {
+  // @ts-ignore
+  if (typeof b64Data !== 'string') {
+    throw new Error(`Invalid base64`);
+  }
   const byteCharacters = atob(b64Data);
 
   const byteArrays = [];
