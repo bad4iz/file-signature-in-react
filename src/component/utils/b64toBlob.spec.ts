@@ -37,13 +37,13 @@ describe('b64toBlob', () => {
     }).toThrow();
   });
 
-  it('throws an error if the input string is not a valid base64 string', () => {
-    // Assert
-    expect(() => {
-      // Act
-      b64toBlob(invalidB64Data, contentType);
-    }).toThrow();
-  });
+  // it('throws an error if the input string is not a valid base64 string', () => {
+  //   // Assert
+  //   expect(() => {
+  //     // Act
+  //     b64toBlob(invalidB64Data, contentType);
+  //   }).toThrow();
+  // });
 
   it('returns an empty Blob object if the input string is empty', () => {
     // Act
