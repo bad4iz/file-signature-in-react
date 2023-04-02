@@ -6,7 +6,7 @@
  * @param sliceSize - Size of the slice.
  * @returns Конвертируемые данные в Blob.
  * @example ---
- * const sign = await certsApi.signBase64(thumbprint, sBase64Data)
+ * const sign = await certsApi.signBase64(thumbprint, sBase64Data);
  * const contentType = type.split(':')[1]
  * const blob = b64toBlob(sign, contentType)
  */
@@ -15,11 +15,7 @@ export function b64toBlob(
   contentType = '',
   sliceSize = 512,
 ): Blob {
-  // @ts-ignore
-  if (typeof b64Data !== 'string') {
-    throw new Error(`Invalid base64`);
-  }
-  const byteCharacters = atob(b64Data);
+  const byteCharacters = Buffer.from(b64Data, 'base64').toString('binary');
 
   const byteArrays = [];
 
