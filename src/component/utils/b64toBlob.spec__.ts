@@ -1,11 +1,21 @@
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it,vi } from 'vitest';
 
 import { b64toBlob } from './b64toBlob';
+
+beforeAll(() => {
+  global.Blob = vi.fn().mockImplementation((byteArrays, options) => {
+    return { byteArrays, options };
+  });
+});
+
+afterAll(() => {
+  delete global.Blob;
+});
 
 describe('b64toBlob', () => {
   // Arrange
   const b64Data = 'SGVsbG8gV29ybGQh'; // base64-encoded "Hello World!"
-  const invalidB64Data = 'not base64';
+  // const invalidB64Data = 'not base64';
   const emptyB64Data = '';
   const contentType = 'text/plain';
 
