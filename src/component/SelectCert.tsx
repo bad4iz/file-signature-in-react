@@ -15,9 +15,9 @@ import { useDoCertsList } from './utils/hooks';
  * @returns {FC}.
  */
 const SelectCert: FC<ISelectCertProps> = ({
-  setThumbprint = () => {},
+  setThumbprint = () => { },
   Component = Select,
-  callbackError = () => {},
+  callbackError = () => { },
   value,
 }): ReactElement => {
   const [listCert, setListCert] = useState<ValueSelectI[]>([
@@ -26,7 +26,7 @@ const SelectCert: FC<ISelectCertProps> = ({
 
   const [selectItem, setSelectItem] = useState<ThumbprintType | null>(null);
 
-  useDoCertsList(callbackError)
+  useDoCertsList()
     .then(setListCert)
     .catch((e) => callbackError(String(e)));
 
