@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+#!/bin/bash
+
+if [[ $3 == "" ]]; then
+    BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+    ISSUE_NUMBER=$(echo $BRANCH_NAME | egrep -o '[0-9]+' | sed 's/^/#/'| sed 's/$/:/')
+    sed -i.bak "1s/^/$ISSUE_NUMBER /" $1
+fi
