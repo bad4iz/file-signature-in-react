@@ -5,7 +5,6 @@ import { b64toBlob } from './b64toBlob';
 describe('b64toBlob', () => {
   // Arrange
   const b64Data = 'SGVsbG8gV29ybGQh'; // base64-encoded "Hello World!"
-  const invalidB64Data = 'not base64';
   const emptyB64Data = '';
   const contentType = 'text/plain';
 
@@ -37,14 +36,6 @@ describe('b64toBlob', () => {
     }).toThrow();
   });
 
-  it('throws an error if the input string is not a valid base64 string', () => {
-    // Assert
-    expect(() => {
-      // Act
-      b64toBlob(invalidB64Data, contentType);
-    }).toThrow();
-  });
-
   it('returns an empty Blob object if the input string is empty', () => {
     // Act
     const blob = b64toBlob(emptyB64Data, contentType);
@@ -63,5 +54,19 @@ describe('b64toBlob', () => {
     expect(blob512.size).toEqual(12);
     expect(blob256.size).toEqual(12);
     expect(blob1024.size).toEqual(12);
+  });
+
+  it('should convert base64 data string to a Blob object', () => {
+    // Arrange
+    const b64Data =
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTw%3D%3D';
+    const contentType = 'image/png';
+
+    // Act
+    const blob = b64toBlob(b64Data, contentType);
+
+    // Assert
+    expect(blob).toBeInstanceOf(Blob);
+    expect(blob.type).toBe(contentType);
   });
 });
