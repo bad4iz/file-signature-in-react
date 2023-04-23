@@ -5,6 +5,6 @@
 
 if [[ $3 == "" ]]; then
     BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-    ISSUE_NUMBER=$(echo $BRANCH_NAME | egrep -o '[0-9]+' | sed 's/^/#/'| sed 's/$/:/')
+    ISSUE_NUMBER=$(echo $BRANCH_NAME | egrep -o '#[0-9]+' | sed 's/$/:/')
     sed -i.bak "1s/^/$ISSUE_NUMBER /" $1
 fi
