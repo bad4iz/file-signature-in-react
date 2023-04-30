@@ -1,15 +1,16 @@
-/* eslint-disable */
+// @ts-ignore
 import ccpa from 'crypto-pro-cadesplugin';
 import { useMemo, useState } from 'react';
 
-/* eslint-disable */
-export const useGetCertificate = (thumbprint) => {
+export const useGetCertificate = (thumbprint: strig) => {
   const [certificate, setCertificate] = useState();
   useMemo(async () => {
     const certsApi = await ccpa();
     const certsList = await certsApi.getCertsList();
 
-    const findCert = certsList.find((item) => item.thumbprint === thumbprint);
+    const findCert = certsList.find(
+      (item: { thumbprint: string }) => item.thumbprint === thumbprint,
+    );
 
     setCertificate(findCert);
   }, [thumbprint]);
