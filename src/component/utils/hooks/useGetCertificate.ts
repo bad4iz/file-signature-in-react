@@ -2,7 +2,7 @@
 import ccpa from 'crypto-pro-cadesplugin';
 import { useMemo, useState } from 'react';
 
-export const useGetCertificate = (thumbprint: strig) => {
+export const useGetCertificate = (thumbprint: string) => {
   const [certificate, setCertificate] = useState();
   useMemo(async () => {
     const certsApi = await ccpa();
