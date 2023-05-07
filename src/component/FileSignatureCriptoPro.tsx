@@ -65,7 +65,7 @@ export const FileSignatureCryptoPro = ({
   ButtonComponent = Button,
   callbackError = (_: any) => _,
 }: FileSignatureCryptoProps) => {
-  const [thumbprint, setThumbprint] = useState(null);
+  const [thumbprint, setThumbprint] = useState('');
   const [sign, setSign] = useState<Blob | null>(null);
   const [fileNameSign, setFileNameSign] = useState<string | null>(null);
   const selectCert = useGetCertificate(thumbprint);
@@ -103,12 +103,12 @@ export const FileSignatureCryptoPro = ({
       } else if (files?.length) {
         const signs: SignInterface[] = [];
         Promise.all(
-          Array.from(files).map((item) => {
-            return signFile({ thumbprint, file: item }).then(
-              ({ fileName, blob }) => {
-                signs.push({ fileNameSign: fileName, sign: blob });
-              },
-            );
+          Array.from(files).map(async (item) => {
+            const { fileName, blob } = await signFile({
+              thumbprint,
+              file: item,
+            });
+            signs.push({ fileNameSign: fileName, sign: blob });
           }),
         )
           .then(() => {
