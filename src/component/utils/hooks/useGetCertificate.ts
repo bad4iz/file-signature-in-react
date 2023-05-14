@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 
 export const useGetCertificate = (thumbprint: string) => {
   const [certificate, setCertificate] = useState();
+
   useMemo(async () => {
     const certsApi = await ccpa();
     const certsList = await certsApi.getCertsList();
