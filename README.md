@@ -1,3 +1,11 @@
+[<img src="https://vitejs.dev/logo.svg"  width="100"/>](https://vitejs.dev/)
+<img src="img/plus.png"  width="50"/>
+[<img src="img/react.svg"  width="100"/>](https://react.dev/)
+<img src="img/plus.png"  width="50"/>
+[<img src="img/ts-logo-128.svg"  width="100"/>](https://www.typescriptlang.org/)
+<img src="img/plus.png"  width="50"/>
+[<img src="https://vitest.dev/logo.svg"  width="100"/>](https://vitest.dev/)
+
 # File signature
 
 React Компонент для подписи файла ЭЦП, с помощью плагина «КриптоПро ЭЦП Browser plug-in»
