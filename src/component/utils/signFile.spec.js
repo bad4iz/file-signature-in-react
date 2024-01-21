@@ -1,16 +1,24 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
-import { signFile } from './signFile'; // Replace 'yourFileName' with the actual name of your TypeScript file
+import { b64toBlob } from './b64toBlob';
+import { signFile } from './signFile';
+import { toBase64 } from './toBase64';
+
+vi.mock('./b64toBlob');
+vi.mock('./toBase64');
 
 describe('signFile.spec', () => {
-  it('default', () => {
+  it('default', async () => {
     expect.hasAssertions();
     // ☣️  Arrange (всякие моки)
 
     //🔥 Act
-    const res = signFile('');
+    const res = await signFile('');
 
     //❓ Assert
-    expect(res).toBe(1);
+    expect(res).toStrictEqual({
+      blob: null,
+      fileName: null,
+    });
   });
 });
