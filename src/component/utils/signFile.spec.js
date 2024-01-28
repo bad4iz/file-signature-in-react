@@ -16,7 +16,7 @@ vi.mock('crypto-pro-cadesplugin');
  */
 const defaultMock = () => {
   const signBase64Spy = vi.fn().mockResolvedValue('');
-  b64toBlob.mockResolvedValue('');
+  b64toBlob.mockReturnValue('b64toBlob');
   toBase64.mockReturnValue('');
 
   ccpa.mockResolvedValue({
@@ -40,7 +40,6 @@ describe('signFile.spec', () => {
       fileName: null,
     });
   });
-
   it('нет файла', async () => {
     expect.hasAssertions();
     // ☣️  Arrange (всякие моки)
@@ -53,6 +52,37 @@ describe('signFile.spec', () => {
     expect(res).toStrictEqual({
       blob: null,
       fileName: null,
+    });
+  });
+
+  it('есть файл', async () => {
+    expect.hasAssertions();
+    // ☣️  Arrange (всякие моки)
+    defaultMock();
+
+    const file = {
+      blob: 'type:superType;base64,_body file_',
+      name: 'nameFile',
+    };
+    const thumbprint = 'thumbprint';
+    toBase64.mockImplementation((file) => file.blob);
+
+    const signBase64Spy = vi.fn().mockResolvedValue('sign');
+    ccpa.mockResolvedValue({
+      signBase64: signBase64Spy,
+    });
+
+    //🔥 Act
+    const res = await signFile({ file, thumbprint });
+
+    //❓ Assert
+    expect(toBase64).toHaveBeenCalledWith(file);
+    expect(signBase64Spy).toHaveBeenCalledWith(thumbprint, '_body file_');
+    expect(b64toBlob).toHaveBeenCalledWith('sign', 'superType');
+
+    expect(res).toStrictEqual({
+      blob: 'b64toBlob',
+      fileName: 'nameFile.sig',
     });
   });
 });
