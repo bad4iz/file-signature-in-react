@@ -1,6 +1,5 @@
 /**
  * Конвертирует base64 в Blob object.
- *
  * @param b64Data - Blob data.
  * @param contentType - Content type.
  * @param sliceSize - Size of the slice.

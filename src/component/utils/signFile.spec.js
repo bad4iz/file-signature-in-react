@@ -11,7 +11,6 @@ vi.mock('crypto-pro-cadesplugin');
 
 /**
  * Mock default.
- *
  * @returns {void}
  */
 const defaultMock = () => {

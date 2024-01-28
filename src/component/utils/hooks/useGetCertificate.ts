@@ -4,7 +4,6 @@ import { useMemo, useState } from 'react';
 
 /**
  * This function returns a certificate object based on a given thumbprint using CCPA API.
- *
  * @param {string} thumbprint - The `thumbprint` parameter is a string that represents the unique
  * identifier of a certificate. The function `useGetCertificate` uses this parameter to search for a
  * certificate in a list of certificates and returns the matching certificate.
