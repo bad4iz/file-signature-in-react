@@ -27,11 +27,27 @@ const defaultMock = () => {
 describe('signFile.spec', () => {
   it('default', async () => {
     expect.hasAssertions();
+
     // ☣️  Arrange (всякие моки)
     defaultMock();
 
     //🔥 Act
     const res = await signFile('');
+
+    //❓ Assert
+    expect(res).toStrictEqual({
+      blob: null,
+      fileName: null,
+    });
+  });
+
+  it('нет файла', async () => {
+    expect.hasAssertions();
+    // ☣️  Arrange (всякие моки)
+    defaultMock();
+
+    //🔥 Act
+    const res = await signFile({ file: null });
 
     //❓ Assert
     expect(res).toStrictEqual({
