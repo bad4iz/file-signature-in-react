@@ -48,9 +48,9 @@ export interface ISelectCertProps {
   Component: any;
   // todo разобраться с типом
   setThumbprint?: (e: any) => void;
+
   /**
    * Callback error - для перехвата ошибок.
-   *
    * @param {string | void} error
    */
   callbackError?: (error: string | void | undefined) => void;
