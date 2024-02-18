@@ -21,7 +21,7 @@ jobs:
       - name: 'Install Deps'
         run: npm install
       - name: 'Test'
-        run: npx vitest --coverage
+        run: npx vitest --coverage.enabled --changed=origin/develop
       - name: 'Report Coverage'
         if: always() # Also generate the report if tests are failing
         uses: davelosert/vitest-coverage-report-action@v1
