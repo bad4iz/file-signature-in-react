@@ -22,7 +22,7 @@ jobs:
         # run: git branch develop origin/develop
         # - name: Git diff
         # run: git diff --name-only origin/develop HEAD
-        # - name: 'Install Deps'
+      - name: 'Install Deps'
         run: npm install
       - name: 'Test'
         run: npx vitest --coverage.enabled --changed
