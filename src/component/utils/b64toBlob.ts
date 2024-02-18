@@ -3,8 +3,8 @@
  * @param b64Data - Blob data.
  * @param contentType - Content type.
  * @param sliceSize - Size of the slice.
- * @returns Конвертируемые данные в Blob.
- * @example ---
+ * @returns Конвертируемые данные  в Blob.
+ * @example -----
  * const sign = await certsApi.signBase64(thumbprint, sBase64Data);
  * const contentType = type.split(':')[1]
  * const blob = b64toBlob(sign, contentType)
