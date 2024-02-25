@@ -51,6 +51,7 @@ export interface ISelectCertProps {
 
   /**
    * Callback error - для перехвата ошибок.
+   *
    * @param {string | void} error
    */
   callbackError?: (error: string | void | undefined) => void;

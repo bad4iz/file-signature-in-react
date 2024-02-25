@@ -6,7 +6,8 @@ import { extract } from '../extract';
 
 /**
  * Hook. This function returns a list of certificate labels and thumbprints using CCPA API.
- * @returns {void}
+ *
+ * @returns A list of certificate labels and thumbprints.
  */
 export const useDoCertsList = () =>
   useMemo(async () => {

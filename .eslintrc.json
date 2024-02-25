@@ -7,8 +7,7 @@
     "eslint:recommended",
     "plugin:react/all",
     "plugin:@typescript-eslint/recommended",
-    "plugin:jsdoc/recommended",
-    "plugin:jest-dom/recommended"
+    "plugin:jsdoc/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -18,34 +17,35 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "simple-import-sort",
-    "jsdoc",
-    "jest-dom"
-  ],
+  "plugins": ["react", "@typescript-eslint", "simple-import-sort", "jsdoc"],
   "rules": {
-    "camelcase": "error",
-    "no-duplicate-imports": "error",
     "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "no-alert": "error",
     "@typescript-eslint/no-empty-function": "off",
-    "react/no-unknown-property": "off",
-    "react/no-unescaped-entities ": "off",
-    "no-console": 1,
-    "valid-jsdoc": 1,
+    "@typescript-eslint/no-explicit-any": "off",
+    "camelcase": "error",
     "jsdoc/check-indentation": 1,
     "jsdoc/check-line-alignment": 1,
     "jsdoc/check-syntax": 1,
     "jsdoc/require-description": 1,
     "jsdoc/require-description-complete-sentence": 1,
-    "jsdoc/require-jsdoc": 1,
     "jsdoc/require-hyphen-before-param-description": 1,
+    "jsdoc/require-jsdoc": 1,
     "jsdoc/require-returns-description": 0,
-    "simple-import-sort/imports": "warn",
+    "no-alert": "error",
+    "no-console": 1,
+    "no-duplicate-imports": "error",
+    "react/no-unescaped-entities ": "off",
+    "react/no-unknown-property": "off",
     "simple-import-sort/exports": "warn",
+    "simple-import-sort/imports": "warn",
+    "valid-jsdoc": 1,
+    "jsdoc/tag-lines": [
+      "error",
+      "any",
+      {
+        "startLines": 1
+      }
+    ],
     "require-jsdoc": [
       1,
       {
@@ -84,15 +84,12 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.ts"
-      ],
+      "files": ["**/*.ts"],
       "rules": {
         "require-jsdoc": [
           1,
           {
-            "require": {
-            }
+            "require": {}
           }
         ],
         "valid-jsdoc": [
