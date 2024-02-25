@@ -7,6 +7,7 @@ import { toBase64 } from './toBase64';
 
 /**
  * Подпись файла.
+ *
  * @param params - Parameters.
  * @param params.file - Файл на подпись.
  * @param params.thumbprint - Печать.
