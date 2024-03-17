@@ -1,6 +1,6 @@
 {
   "name": "file-signature-in-react",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "React Компонент для подписи файла ЭЦП",
   "type": "module",
   "scripts": {
@@ -9,10 +9,11 @@
     "test": "vitest",
     "dev": "vite",
     "format": "prettier --write src//**/*.{ts,tsx,css} --config ./.prettierrc",
-    "lint": "eslint ./src/  --max-warnings=0 --color",
-    "lint:fix": "yarn lint --fix ",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "lint:fix": "eslint --fix 'src/**/*.{jsx,ts,tsx}'",
     "prepare": "husky install",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "ts": "tsc --locale ru --watch"
   },
   "_husky": {
     "hooks": {
