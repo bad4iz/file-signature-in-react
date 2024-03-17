@@ -3,7 +3,7 @@
 
 
 # prettier
-npx pretty-quick --staged
+#npx pretty-quick --staged
 yarn lint:fix
 
 # npm test

@@ -1,6 +1,6 @@
 {
   "name": "file-signature-in-react",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "React Компонент для подписи файла ЭЦП",
   "type": "module",
   "scripts": {
@@ -47,8 +47,8 @@
     "@typescript-eslint/eslint-plugin": "6.19.1",
     "@typescript-eslint/parser": "6.19.1",
     "@vitejs/plugin-react": "4.2.1",
-    "@vitest/coverage-v8": "^1.2.2",
-    "@vitest/ui": "1.2.2",
+    "@vitest/coverage-v8": "1.4.0",
+    "@vitest/ui": "1.4.0",
     "eslint": "8.56.0",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-jest-dom": "5.1.0",
@@ -65,7 +65,7 @@
     "vite-plugin-dts": "3.7.2",
     "vite-plugin-linter": "2.1.1",
     "vite-tsconfig-paths": "4.3.1",
-    "vitest": "1.2.2"
+    "vitest": "1.4.0"
   },
   "peerDependencies": {
     "react": ">=18.2.0",
@@ -74,9 +74,16 @@
   "keywords": [
     "react-component",
     "cripto-pro",
+    "crypto-pro",
+    "crypto pro",
+    "cryptopro",
+    "crypto",
+    "cadesplugin",
+    "cades plugin",
     "react",
     "file-signature",
     "signature",
+    "КриптоПро CSP",
     "file"
   ],
   "author": "bad4iz <fileSignatureInReact@bad4iz.ru>",
