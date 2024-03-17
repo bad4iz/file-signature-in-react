@@ -1,6 +1,6 @@
 {
   "name": "file-signature-in-react",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "React Компонент для подписи файла ЭЦП",
   "type": "module",
   "scripts": {
