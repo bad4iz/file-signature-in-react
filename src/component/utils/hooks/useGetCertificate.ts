@@ -1,6 +1,6 @@
 // @ts-ignore
 import ccpa from 'crypto-pro-cadesplugin';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * This function returns a certificate object based on a given thumbprint using CCPA API.
@@ -16,15 +16,17 @@ import { useMemo, useState } from 'react';
 export const useGetCertificate = (thumbprint: string) => {
   const [certificate, setCertificate] = useState();
 
-  useMemo(async () => {
-    const certsApi = await ccpa();
-    const certsList = await certsApi.getCertsList();
+  useEffect(() => {
+    (async () => {
+      const certsApi = await ccpa();
+      const certsList = await certsApi.getCertsList();
 
-    const findCert = certsList.find(
-      (item: { thumbprint: string }) => item.thumbprint === thumbprint,
-    );
+      const findCert = certsList.find(
+        (item: { thumbprint: string }) => item.thumbprint === thumbprint,
+      );
 
-    setCertificate(findCert);
+      setCertificate(findCert);
+    })();
   }, [thumbprint]);
   return certificate;
 };
