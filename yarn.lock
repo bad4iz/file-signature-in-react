@@ -1644,10 +1644,10 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-crypto-pro-cadesplugin@1.0.26:
-  version "1.0.26"
-  resolved "https://registry.yarnpkg.com/crypto-pro-cadesplugin/-/crypto-pro-cadesplugin-1.0.26.tgz#a4bc880763075c1a9d3e6b46656984034096d5a7"
-  integrity sha512-Qpo161KUlltqfe9THYOqqd/NxkEi26Wgb5wQveTz9Xlpl1DqyBLPWVTGMihDiXieWrLu0sP54u/4AlEU5xZJbw==
+crypto-pro-cadesplugin@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/crypto-pro-cadesplugin/-/crypto-pro-cadesplugin-1.2.0.tgz"
+  integrity sha512-5YqgrdZ/VU3jYLP5b/I3WJmr4dLUyv0YxMOW6qu+0Bl0Pviw663eaenNqm549XpHr5fUSQCOka0TXcXFF3wBpw==
 
 csstype@^3.0.2:
   version "3.1.3"

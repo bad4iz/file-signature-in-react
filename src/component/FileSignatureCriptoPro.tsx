@@ -39,6 +39,8 @@ export type FileSignatureCryptoProps = {
   callbackError: (a: any) => void;
 };
 
+const ignoreError = (_: any) => _;
+
 /**
  * Главный компонент подписи.
  *
@@ -63,12 +65,12 @@ export const FileSignatureCryptoPro = ({
   clear = false,
   SelectComponent = undefined,
   ButtonComponent = Button,
-  callbackError = (_: any) => _,
+  callbackError = ignoreError,
 }: FileSignatureCryptoProps) => {
   const [thumbprint, setThumbprint] = useState('');
   const [sign, setSign] = useState<Blob | null>(null);
   const [fileNameSign, setFileNameSign] = useState<string | null>(null);
-  const selectCert = useGetCertificate(thumbprint);
+  const selectCert = useGetCertificate(thumbprint, callbackError);
   const cleanOut = () => {
     setSign(null);
     setFileNameSign(null);

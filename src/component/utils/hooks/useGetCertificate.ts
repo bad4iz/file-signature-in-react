@@ -1,6 +1,6 @@
 // @ts-ignore
 import ccpa from 'crypto-pro-cadesplugin';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * This function returns a certificate object based on a given thumbprint using CCPA API.
@@ -8,23 +8,46 @@ import { useMemo, useState } from 'react';
  * @param {string} thumbprint - The `thumbprint` parameter is a string that represents the unique
  * identifier of a certificate. The function `useGetCertificate` uses this parameter to search for a
  * certificate in a list of certificates and returns the matching certificate.
+ * @param {Function} callbackError - Receives plugin loading errors.
  * @returns The `useGetCertificate` custom hook is returning the `certificate` object that matches the
  * `thumbprint` passed as a parameter. The `certificate` object is obtained by calling the `ccpa()`
  * function and then calling the `getCertsList()` method on the returned object. The `find()` method is
  * then used to find the certificate object that matches the `thumbprint` passed as a.
  */
-export const useGetCertificate = (thumbprint: string) => {
+export const useGetCertificate = (
+  thumbprint: string,
+  callbackError: (error: string) => void,
+) => {
   const [certificate, setCertificate] = useState();
 
-  useMemo(async () => {
-    const certsApi = await ccpa();
-    const certsList = await certsApi.getCertsList();
+  useEffect(() => {
+    let isCurrentRequest = true;
 
-    const findCert = certsList.find(
-      (item: { thumbprint: string }) => item.thumbprint === thumbprint,
-    );
+    const getCertificate = async () => {
+      try {
+        const certsApi = await ccpa();
+        const certsList = await certsApi.getCertsList();
 
-    setCertificate(findCert);
-  }, [thumbprint]);
+        const findCert = certsList.find(
+          (item: { thumbprint: string }) => item.thumbprint === thumbprint,
+        );
+
+        if (isCurrentRequest) {
+          setCertificate(findCert);
+        }
+      } catch (error) {
+        if (isCurrentRequest) {
+          callbackError(String(error));
+        }
+      }
+    };
+
+    void getCertificate();
+
+    return () => {
+      isCurrentRequest = false;
+    };
+  }, [callbackError, thumbprint]);
+
   return certificate;
 };

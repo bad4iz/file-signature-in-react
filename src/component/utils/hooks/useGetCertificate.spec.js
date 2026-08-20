@@ -1,5 +1,5 @@
 import ccpa from 'crypto-pro-cadesplugin';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { useGetCertificate } from './useGetCertificate';
@@ -7,39 +7,74 @@ import { useGetCertificate } from './useGetCertificate';
 vi.mock('react');
 vi.mock('crypto-pro-cadesplugin');
 
-describe('useGetCertificate', () => {
-  it('should return the certificate', async () => {
-    // Arrange
-    const thumbprint = 'thumbprint1';
-    useState.mockReturnValue(['aaa', (_) => _]);
+/**
+ * Mock Default.
+ *
+ * @returns {void}
+ */
+const mockDefault = () => {
+  useState.mockReturnValue(['certificate', vi.fn()]);
+  useEffect.mockImplementation((effect) => effect());
+  ccpa.mockResolvedValue({
+    getCertsList: vi.fn().mockResolvedValue([]),
+  });
+};
 
-    // Act
-    const certificate = useGetCertificate(thumbprint);
+describe('🐛 spec useGetCertificate', () => {
+  it('🧪 default', () => {
+    expect.hasAssertions();
 
-    // Assert
-    expect(certificate).toBe('aaa');
+    //☣️ Arrange
+    mockDefault();
+
+    //🔥 Act
+    const certificate = useGetCertificate('thumbprint', vi.fn());
+
+    //❓ Assert
+    expect(certificate).toBe('certificate');
   });
 
-  it('useMemo called with', async () => {
-    // Arrange
-    const thumbprint = 'thumbprint-1';
-    const setCertificateSpy = vi.fn();
-    useState.mockReturnValue(['aaa', setCertificateSpy]);
-    const mockGetCertsList = vi.fn(() => [
-      { subjectInfo: 'CN=Test Certificate 1', thumbprint: 'thumbprint-1' },
-      { subjectInfo: 'CN=Test Certificate 2', thumbprint: 'thumbprint-2' },
-      { subjectInfo: 'CN=Test Certificate 3', thumbprint: 'thumbprint-3' },
-    ]);
+  it('🧪 передает ошибку загрузки плагина в callbackError', async () => {
+    expect.hasAssertions();
 
-    ccpa.mockImplementation(() => {
-      return { getCertsList: mockGetCertsList };
+    //☣️ Arrange
+    mockDefault();
+    const callbackError = vi.fn();
+
+    //🧹 clear mock
+    ccpa.mockRejectedValue(new Error('Плагин недоступен'));
+
+    //🔥 Act
+    useGetCertificate('thumbprint', callbackError);
+
+    //❓ Assert
+    await vi.waitFor(() => {
+      expect(callbackError).toHaveBeenCalledWith('Error: Плагин недоступен');
     });
-    useMemo.mockImplementation((fn) => fn());
+  });
 
-    // Act
-    useGetCertificate(thumbprint);
+  it('🧪 игнорирует ответ предыдущего запроса', async () => {
+    expect.hasAssertions();
 
-    // Assert
-    expect(useMemo).toHaveBeenCalledWith(expect.any(Function), [thumbprint]);
+    //☣️ Arrange
+    mockDefault();
+    const setCertificate = vi.fn();
+    let cleanup;
+
+    //🧹 clear mock
+    useState.mockReturnValue(['certificate', setCertificate]);
+    useEffect.mockImplementation((effect) => {
+      cleanup = effect();
+    });
+
+    //🔥 Act
+    useGetCertificate('thumbprint', vi.fn());
+    cleanup();
+    await new Promise((resolve) => {
+      setTimeout(resolve, 0);
+    });
+
+    //❓ Assert
+    expect(setCertificate).not.toHaveBeenCalled();
   });
 });
