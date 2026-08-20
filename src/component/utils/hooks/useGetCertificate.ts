@@ -21,7 +21,9 @@ export const useGetCertificate = (
   const [certificate, setCertificate] = useState();
   const callbackErrorRef = useRef(callbackError);
 
-  callbackErrorRef.current = callbackError;
+  useEffect(() => {
+    callbackErrorRef.current = callbackError;
+  }, [callbackError]);
 
   useEffect(() => {
     let isCurrentRequest = true;
