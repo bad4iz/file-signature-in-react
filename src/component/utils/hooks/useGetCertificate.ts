@@ -1,0 +1,58 @@
+// @ts-ignore
+import ccpa from 'crypto-pro-cadesplugin';
+import { useEffect, useRef, useState } from 'react';
+
+/**
+ * This function returns a certificate object based on a given thumbprint using CCPA API.
+ *
+ * @param {string} thumbprint - The `thumbprint` parameter is a string that represents the unique
+ * identifier of a certificate. The function `useGetCertificate` uses this parameter to search for a
+ * certificate in a list of certificates and returns the matching certificate.
+ * @param {Function} callbackError - Receives plugin loading errors.
+ * @returns The `useGetCertificate` custom hook is returning the `certificate` object that matches the
+ * `thumbprint` passed as a parameter. The `certificate` object is obtained by calling the `ccpa()`
+ * function and then calling the `getCertsList()` method on the returned object. The `find()` method is
+ * then used to find the certificate object that matches the `thumbprint` passed as a.
+ */
+export const useGetCertificate = (
+  thumbprint: string,
+  callbackError: (error: string) => void,
+) => {
+  const [certificate, setCertificate] = useState();
+  const callbackErrorRef = useRef(callbackError);
+
+  useEffect(() => {
+    callbackErrorRef.current = callbackError;
+  }, [callbackError]);
+
+  useEffect(() => {
+    let isCurrentRequest = true;
+
+    const getCertificate = async () => {
+      try {
+        const certsApi = await ccpa();
+        const certsList = await certsApi.getCertsList();
+
+        const findCert = certsList.find(
+          (item: { thumbprint: string }) => item.thumbprint === thumbprint,
+        );
+
+        if (isCurrentRequest) {
+          setCertificate(findCert);
+        }
+      } catch (error) {
+        if (isCurrentRequest) {
+          callbackErrorRef.current(String(error));
+        }
+      }
+    };
+
+    void getCertificate();
+
+    return () => {
+      isCurrentRequest = false;
+    };
+  }, [thumbprint]);
+
+  return certificate;
+};

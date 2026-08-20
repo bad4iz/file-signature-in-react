@@ -1,10 +1,10 @@
 {
   "name": "file-signature-in-react",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "React Компонент для подписи файла ЭЦП",
   "type": "module",
   "scripts": {
-    "build": "vite build",
+    "build": "tsc && vite build",
     "coverage": "vitest run --coverage",
     "test": "vitest",
     "dev": "vite",
@@ -98,9 +98,23 @@
   "license": "ISC",
   "homepage": "https://github.com/bad4iz/file-signature-in-react#readme",
   "dependencies": {
-    "crypto-pro-cadesplugin": "1.0.26",
+    "crypto-pro-cadesplugin": "1.2.0",
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0"
   },
-  "packageManager": "yarn@1.22.1"
+  "commitlint": {
+    "rules": {
+      "references-empty": [
+        2,
+        "never"
+      ]
+    },
+    "parserPreset": {
+      "parserOpts": {
+        "issuePrefixes": [
+          "#"
+        ]
+      }
+    }
+  }
 }

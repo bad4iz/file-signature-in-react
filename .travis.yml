@@ -6,7 +6,6 @@ cache:
   directories:
     - node_modules
 
-
 install:
   - npm install
 script: npm test
@@ -15,8 +14,6 @@ after_success: npm run coverage
 before_deploy:
   - "echo 'ready?'"
   - npm build
-
-
 #deploy:
 #  provider: npm
 #  email: $EMAIL_ADDRESS

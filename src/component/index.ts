@@ -1,2 +1,2 @@
-export * from './FileSignatureCriptoPro'
-export { default } from './FileSignatureCriptoPro'
+export * from './FileSignatureCriptoPro';
+export { default } from './FileSignatureCriptoPro';
