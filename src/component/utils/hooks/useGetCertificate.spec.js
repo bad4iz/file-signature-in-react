@@ -1,5 +1,5 @@
 import ccpa from 'crypto-pro-cadesplugin';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { useGetCertificate } from './useGetCertificate';
@@ -13,7 +13,9 @@ vi.mock('crypto-pro-cadesplugin');
  * @returns {void}
  */
 const mockDefault = () => {
+  vi.clearAllMocks();
   useState.mockReturnValue(['certificate', vi.fn()]);
+  useRef.mockImplementation((value) => ({ current: value }));
   useEffect.mockImplementation((effect) => effect());
   ccpa.mockResolvedValue({
     getCertsList: vi.fn().mockResolvedValue([]),
@@ -76,5 +78,20 @@ describe('🐛 spec useGetCertificate', () => {
 
     //❓ Assert
     expect(setCertificate).not.toHaveBeenCalled();
+  });
+
+  it('🧪 не перезапускает загрузку при изменении callbackError', () => {
+    expect.hasAssertions();
+
+    //☣️ Arrange
+    mockDefault();
+
+    //🔥 Act
+    useGetCertificate('thumbprint', vi.fn());
+
+    //❓ Assert
+    expect(useEffect).toHaveBeenCalledWith(expect.any(Function), [
+      'thumbprint',
+    ]);
   });
 });
